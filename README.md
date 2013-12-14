@@ -1,4 +1,4 @@
-om636-emitter
+ohmitter
 =============
 
 C++ event dispatcher inspired by NodeJS EventEmitter  
@@ -7,6 +7,6 @@ C++ event dispatcher inspired by NodeJS EventEmitter
 build and test using scons
 --------------------------
 
-cd om636-emitter/test  
+cd ohmitter/test  
 scons test
 
