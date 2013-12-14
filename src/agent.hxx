@@ -6,8 +6,7 @@ namespace om636
 		/////////////////////////////////////////////////////////////////////////////////////
 		template<typename T>
 		Agent<T>::Agent( callback_type callback )
-		: m_dead( 0 )
-		, m_callback( callback )
+		: m_callback( callback )
 		{}
         
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -40,14 +39,14 @@ namespace om636
 		template<typename T>
 		void Agent<T>::kill()
 		{
-			m_dead = 1;
+			m_callback = callback_type();
 		}
         
 		/////////////////////////////////////////////////////////////////////////////////////
 		template<typename T>
 		bool Agent<T>::is_dead()
 		{
-			return m_dead;
+			return (bool) m_callback;
 		}
 
 	}	//control

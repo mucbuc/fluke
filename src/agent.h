@@ -24,7 +24,6 @@ namespace om636
 			bool is_dead();
 
 		private: 
-			bool m_dead; 
 			callback_type m_callback;
 		};
 

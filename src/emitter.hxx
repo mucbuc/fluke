@@ -147,7 +147,7 @@ namespace om636
         template<typename T, typename U>
         void Emitter<T, U>::kill_all(map_type & map)
         {
-            for_each( map.begin(), map.end(), [](typename map_type::value_type & p) {
+            for_each(map.begin(), map.end(), [](typename map_type::value_type & p) {
                 kill_all( p.second );
             } );
             map.clear();
