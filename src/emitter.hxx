@@ -1,93 +1,24 @@
-namespace core
+namespace om636
 {
-	namespace events
+	namespace control
 	{
 		
 		/////////////////////////////////////////////////////////////////////////////////////
 		template<typename T, typename U>
-		Emitter<T, U>::Agent::Agent( callback_type callback )
-		: m_dead( 0 )
-		, m_callback( callback )
-		{}
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-		void Emitter<T, U>::Agent::invoke()
+		auto Emitter<T, U>::on( event_type e, callback_type c ) -> listener_type
 		{
-			assert( !is_dead() );
-			m_callback();
-		}
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-        template<typename V>
-        void Emitter<T, U>::Agent::invoke( V v )
-		{
-			assert( !is_dead() );
-			m_callback( v );
-		}
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-		template<typename V, typename W>
-        void Emitter<T, U>::Agent::invoke( V v, W w)
-		{
-			assert( !is_dead() );
-			m_callback( v, w );
-		}
-		
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-		void Emitter<T, U>::Agent::kill()
-		{
-			m_dead = 1;
-		}
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-		bool Emitter<T, U>::Agent::is_dead()
-		{
-			return m_dead;
-		}
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-        Emitter<T, U>::Listener::Listener( pointer_type agent )
-		: m_agent( agent )
-		{}
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-        Emitter<T, U>::Listener::~Listener()
-		{
-            // this is the only listener, the other owner is the batch
-            if (m_agent.use_count() == 2)
-                m_agent->kill();
-        }
-        
-        /////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-        void Emitter<T, U>::Listener::remove()
-        {
-            m_agent->kill();
-        }
-        
-		/////////////////////////////////////////////////////////////////////////////////////
-		template<typename T, typename U>
-		auto Emitter<T, U>::on( event_type e, callback_type c ) -> Listener
-		{
-            pointer_type agent( new Agent( c ) );
+            pointer_type agent( new agent_type( c ) );
             m_repeat_add[e].insert( agent );
-			return Listener( agent );
+			return listener_type( agent );
         }
         
 		/////////////////////////////////////////////////////////////////////////////////////
 		template<typename T, typename U>
-		auto Emitter<T, U>::once( event_type e, callback_type c ) -> Listener
+		auto Emitter<T, U>::once( event_type e, callback_type c ) -> listener_type
 		{
-            pointer_type agent( new Agent( c ) );
+            pointer_type agent( new agent_type( c ) );
             m_once_add[e].insert( agent );
-			return Listener( agent );
+			return listener_type( agent );
         }
         
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -222,5 +153,5 @@ namespace core
             map.clear();
         }
         
-    } 	// events
-}	// core
+    } 	// control 
+}	// om636

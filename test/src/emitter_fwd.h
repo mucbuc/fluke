@@ -4,9 +4,9 @@
 #include <functional>
 #include <string>
 
-namespace core
+namespace om636
 {
-    namespace events
+    namespace control
     {
         template<typename = std::string, typename U = std::function<void()> >
 		class Emitter;

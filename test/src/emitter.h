@@ -1,13 +1,13 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
-#include <om636-emitter/src/emitter.h>
+#include <ohmitter/src/emitter.h>
 
 /////////////////////////////////////////////////////////////////
 void check_modify_while_traversal()
 {
     using namespace std;
-    typedef core::events::Emitter<> emitter_type;
+    typedef om636::control::Emitter<> emitter_type;
 
     static emitter_type emitter;
     static unsigned trap( 0 );
@@ -32,7 +32,7 @@ void check_modify_while_traversal()
         }
     };
     
-    vector< typename emitter_type::Listener > listeners;
+    vector< typename emitter_type::listener_type > listeners;
 
     // test remove while traverse
     listeners.push_back( emitter.on( event, tester::remove ) );
@@ -78,10 +78,10 @@ void check_dispatch_logic()
     };
     
     using namespace std;
-    typedef core::events::Emitter<> emitter_type;
+    typedef om636::control::Emitter<> emitter_type;
     
     emitter_type emitter;
-    vector< typename emitter_type::Listener > listeners;
+    vector< typename emitter_type::listener_type > listeners;
     string event( "calculate answer to L.U. and E." );
     
     trap = 0;
@@ -142,7 +142,7 @@ void check_agent_life_time()
     };
     
     using namespace std;
-    typedef core::events::Emitter< string, dummy_callback > emitter_type;
+    typedef om636::control::Emitter< string, dummy_callback > emitter_type;
     
     static string event( "init" );
     emitter_type emitter;
@@ -169,7 +169,7 @@ void check_agent_life_time()
 
     if (1)
     {
-        emitter_type::Listener listener;
+        emitter_type::listener_type listener;
         if(1)
         {
             auto temp( emitter.on( event, dummy_callback() ) );
