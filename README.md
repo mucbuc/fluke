@@ -1,4 +1,4 @@
-ohmitter
+ohm
 =============
 
 C++ event dispatcher inspired by NodeJS EventEmitter  
@@ -7,6 +7,6 @@ C++ event dispatcher inspired by NodeJS EventEmitter
 build and test using scons
 --------------------------
 
-cd ohmitter/test  
+cd ohm/test  
 scons test
 
