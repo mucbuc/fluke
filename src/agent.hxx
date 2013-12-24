@@ -46,7 +46,7 @@ namespace om636
 		template<typename T>
 		bool Agent<T>::is_dead()
 		{
-			return (bool) m_callback;
+			return !m_callback;
 		}
 
 	}	//control
