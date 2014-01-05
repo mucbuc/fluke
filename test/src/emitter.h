@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
-#include <ohmitter/src/emitter.h>
+#include <ohm/src/emitter.h>
 
 /////////////////////////////////////////////////////////////////
 void check_modify_while_traversal()
