@@ -1,11 +1,7 @@
 #ifndef QUEMITTER_H_INCLUDEGUARD_QMNEOIUOIUEN3242
 #define QUEMITTER_H_INCLUDEGUARD_QMNEOIUOIUEN3242
 
-
-#ifndef EMITTER_H__iFZqmDoIwhGaYO3df4xe5LCQXrbBvj
-#define EMITTER_H__iFZqmDoIwhGaYO3df4xe5LCQXrbBvj
-
-#include <twice-size/src/queue.h>
+#include <ohm/lib/twice-size/src/queue.h>
 #include "emitter.h"
 
 namespace om636
@@ -44,6 +40,8 @@ namespace om636
 			typedef om636::queue< function_type > queue_type;
 			typedef std::mutex mutex_type; 
 			
+			void push_event( function_type );
+
 			queue_type m_queue;
 			mutex_type m_mutex;
         };

@@ -2,6 +2,32 @@
 #include <iostream>
 #include <vector>
 #include <ohm/src/emitter.h>
+#include <ohm/src/quemitter.h>
+
+void check_emit_while_emit()
+{
+    using namespace std;
+    using namespace om636;
+    typedef function<void()> function_type;
+    typedef control::Quemitter< string, function_type > emitter_type;
+    //typedef typename emitter_type::object_type object_type;
+    typedef typename emitter_type::listener_type listener_type;
+
+    size_t counter(0);
+    
+    emitter_type e;
+    string event("e");
+    listener_type p( e.once( event, [&](){
+        ++counter;
+        e.emit( event );
+    } ) );
+    
+    e.emit( event );
+
+    assert( counter == 1 );
+
+    cout << __FUNCTION__ << " passed" << endl;
+}
 
 /////////////////////////////////////////////////////////////////
 void check_modify_while_traversal()

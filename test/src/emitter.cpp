@@ -4,9 +4,9 @@
 
 int main()
 {
-    
-    check_modify_while_traversal();
-    check_agent_life_time();
     check_dispatch_logic();
+    check_agent_life_time();
+    check_modify_while_traversal();
+    check_emit_while_emit();
     return 0;
 }

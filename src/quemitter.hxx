@@ -16,7 +16,7 @@ namespace om636
         /////////////////////////////////////////////////////////////////////////////////////////////
         template<typename T, typename U>
         template<class V> 
-        void Quemitter<T, U>::emit( event_type, V v )
+        void Quemitter<T, U>::emit( event_type e, V v )
         {
             std::function<void()> p = [&]() {
                 base_type::emit( e, v );
@@ -38,8 +38,8 @@ namespace om636
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
-        template<class T, class U, template<class> class V>
-        void Quemitter<T, U, V>::push_event( std::function<void()> f )
+        template<class T, class U>
+        void Quemitter<T, U>::push_event( function_type f )
         {
             std::unique_lock<mutex_type> lock( m_mutex, std::try_to_lock );
             if (lock.owns_lock())
