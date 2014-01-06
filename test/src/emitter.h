@@ -4,13 +4,36 @@
 #include <ohm/src/emitter.h>
 #include <ohm/src/quemitter.h>
 
+void check_emit_with_args()
+{
+    using namespace std;
+    using namespace om636;
+    typedef function<void(int)> function_type;
+    typedef control::Emitter< string, function_type > emitter_type;
+    typedef typename emitter_type::listener_type listener_type;
+    
+    emitter_type e;
+    bool test_passed(0);
+    string event("e");
+    
+    listener_type p( e.once( event, [&](int i){
+        assert( i == 99 );
+        test_passed = 1;
+    } ) );
+    
+    e.emit( event, 99 ); 
+    
+    assert( test_passed );
+
+    cout << __FUNCTION__ << " passed" << endl;
+}
+
 void check_emit_while_emit()
 {
     using namespace std;
     using namespace om636;
     typedef function<void()> function_type;
     typedef control::Quemitter< string, function_type > emitter_type;
-    //typedef typename emitter_type::object_type object_type;
     typedef typename emitter_type::listener_type listener_type;
 
     size_t counter(0);
