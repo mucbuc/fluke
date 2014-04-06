@@ -23,19 +23,22 @@ void check_tokenize()
     emitter_type emitter;
     map_type map;
 
-    auto listener( emitter.once( "new line", [](string){
-        cout << "new line" << endl;
+    auto listener( emitter.once( "new line", [](string val){
+        cout << "new line" << val << endl;
     } ) );
     
+    auto listener2( emitter.once( "semi colon", [](string val ){
+        cout << "semi colon" << val << endl;
+    } ) );
     
     map['\n'] = "new line";
+    map[';'] = "semi colon";
     
-    
-    
+    s << "5;";
     s << "3\n";
     
+    
     lexer::tokenize( s, emitter, map );
-    
-    
+
     cout << "check_tokenize passed " << endl;
 }
