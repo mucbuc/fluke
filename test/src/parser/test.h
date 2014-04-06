@@ -18,17 +18,23 @@ void check_tokenize()
 	typedef map< char, string > map_type; 
     typedef control::Quemitter< string, function<void( string )> > emitter_type;
 
-
+    unsigned counter;
     stringstream s;
     emitter_type emitter;
     map_type map;
 
-    auto listener( emitter.once( "new line", [](string val){
-        cout << "new line" << val << endl;
+    auto listener( emitter.once( "new line", [&](string val){
+        if (val == "3\n")
+        {
+            ++counter;
+        }
     } ) );
     
-    auto listener2( emitter.once( "semi colon", [](string val ){
-        cout << "semi colon" << val << endl;
+    auto listener2( emitter.once( "semi colon", [&](string val ){
+        if (val == "5;")
+        {
+            ++counter;
+        }
     } ) );
     
     map['\n'] = "new line";
@@ -37,8 +43,9 @@ void check_tokenize()
     s << "5;";
     s << "3\n";
     
-    
     lexer::tokenize( s, emitter, map );
 
+    ASSERT( counter == 2 );
+    
     cout << "check_tokenize passed " << endl;
 }
