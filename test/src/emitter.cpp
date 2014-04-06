@@ -1,8 +1,4 @@
-#include <cassert>
-#define ASSERT( b ) assert(b)
-
 #include "emitter_fwd.h"
-
 #include "emitter.h"
 
 int main()

@@ -1,8 +1,9 @@
-#include <cassert>
 #include <iostream>
 #include <vector>
 #include <ohm/src/emitter.h>
 #include <ohm/src/quemitter.h>
+
+#include "debug.h"
 
 void check_emit_once()
 {
@@ -44,13 +45,13 @@ void check_emit_with_args()
     string event("e");
     
     listener_type p( e.once( event, [&](int i){
-        assert( i == 99 );
+        ASSERT( i == 99 );
         test_passed = 1;
     } ) );
     
     e.emit( event, 99 ); 
     
-    assert( test_passed );
+    ASSERT( test_passed );
 
     cout << __FUNCTION__ << " passed" << endl;
 }
@@ -74,7 +75,7 @@ void check_emit_while_emit()
     
     e.emit( event );
 
-    assert( counter == 1 );
+    ASSERT( counter == 1 );
 
     cout << __FUNCTION__ << " passed" << endl;
 }
@@ -115,14 +116,14 @@ void check_modify_while_traversal()
     listeners.push_back( emitter.on( event, tester::remove ) );
     listeners.push_back( emitter.once( event, tester::remove ) );
     emitter.emit( event );
-    assert( trap == 1 );
+    ASSERT( trap == 1 );
     
     // test removeAll while traverse
     listeners.push_back( emitter.on( event, tester::removeAll ) );
     listeners.push_back( emitter.on( event, tester::removeAll ) );
     listeners.push_back( emitter.once( event, tester::removeAll ) );
     emitter.emit( event );
-    assert( trap == 2 );
+    ASSERT( trap == 2 );
     
     // test insert while traverse
     listeners.push_back( emitter.once( event, [&](){
@@ -130,13 +131,13 @@ void check_modify_while_traversal()
         listeners.push_back( emitter.once( event, tester::trigger_trap ) );
     }));
     emitter.emit( event );
-    assert( trap == 2 );
+    ASSERT( trap == 2 );
     
     emitter.emit( event );
-    assert( trap == 4 );
+    ASSERT( trap == 4 );
 
     emitter.emit( event );
-    assert( trap == 5 );
+    ASSERT( trap == 5 );
     
     cout << __FUNCTION__ << " passed" << endl;
 }
@@ -165,26 +166,26 @@ void check_dispatch_logic()
     // check dead agent
     emitter.once( event, tester::trigger_trap );
     emitter.emit( event );
-    assert( trap == 0 );
+    ASSERT( trap == 0 );
     
     // check once
     listeners.push_back( emitter.once( event, tester::trigger_trap ) );
     emitter.emit( event );
-    assert( trap == 1 );
+    ASSERT( trap == 1 );
     emitter.emit( event );
-    assert( trap == 1 );
+    ASSERT( trap == 1 );
     
     // check on
     listeners.push_back( emitter.on( event, tester::trigger_trap ) );
     emitter.emit( event );
-    assert( trap == 2 );
+    ASSERT( trap == 2 );
     emitter.emit( event );
-    assert( trap == 3 );
+    ASSERT( trap == 3 );
     
     // check duplicate
     listeners.push_back( emitter.on( event, tester::trigger_trap ) );
     emitter.emit( event );
-    assert( trap == 5 );
+    ASSERT( trap == 5 );
     
     cout << __FUNCTION__ << " passed" << endl;
 }
@@ -229,9 +230,9 @@ void check_agent_life_time()
         emitter.removeListeners( event );
         
         // this reference is owned by the listener
-        assert( dummy_callback::instance_counter() == 1 );
+        ASSERT( dummy_callback::instance_counter() == 1 );
     }
-    assert( !dummy_callback::instance_counter() );
+    ASSERT( !dummy_callback::instance_counter() );
     
     if (1)
     {
@@ -239,9 +240,9 @@ void check_agent_life_time()
         emitter.removeAllListeners();
         
         // this reference is owned by the listener
-        assert( dummy_callback::instance_counter() == 1 );
+        ASSERT( dummy_callback::instance_counter() == 1 );
     }
-    assert( !dummy_callback::instance_counter() );
+    ASSERT( !dummy_callback::instance_counter() );
 
     if (1)
     {
@@ -249,19 +250,19 @@ void check_agent_life_time()
         if(1)
         {
             auto temp( emitter.on( event, dummy_callback() ) );
-            assert( dummy_callback::instance_counter() == 1 );
+            ASSERT( dummy_callback::instance_counter() == 1 );
         
             listener = temp;
             
-            assert( dummy_callback::instance_counter() == 1 );
+            ASSERT( dummy_callback::instance_counter() == 1 );
         }
         
         // this reference is owned by the emitter
-        assert( dummy_callback::instance_counter() == 1 );
+        ASSERT( dummy_callback::instance_counter() == 1 );
     }
     
     emitter.removeListeners( event );
-    assert( !dummy_callback::instance_counter() );
+    ASSERT( !dummy_callback::instance_counter() );
     
     cout << __FUNCTION__ << " passed" << endl;
 }

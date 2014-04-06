@@ -13,7 +13,7 @@ namespace om636
 		template<typename T>
 		void Agent<T>::invoke()
 		{
-			assert( !is_dead() );
+			ASSERT( !is_dead() );
 			m_callback();
 		}
         
@@ -22,7 +22,7 @@ namespace om636
         template<typename V>
         void Agent<T>::invoke( V v )
 		{
-			assert( !is_dead() );
+			ASSERT( !is_dead() );
 			m_callback( v );
 		}
         
@@ -31,7 +31,7 @@ namespace om636
 		template<typename V, typename W>
         void Agent<T>::invoke( V v, W w)
 		{
-			assert( !is_dead() );
+			ASSERT( !is_dead() );
 			m_callback( v, w );
 		}
 		

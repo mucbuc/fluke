@@ -1,0 +1,8 @@
+#ifndef DEBUG_H_KDJFASFLAKJFAFR2324234
+#define DEBUG_H_KDJFASFLAKJFAFR2324234
+
+#include <cassert>
+
+#define ASSERT(p) assert(p)
+
+#endif // DEBUG_H_KDJFASFLAKJFAFR2324234
