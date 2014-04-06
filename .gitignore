@@ -1,4 +1,4 @@
 .DS_Store
-xcuserdata\
-xcuserdatad\
-*.xcuserdatad\
+xcuserdata/
+xcuserdatad/
+*.xcuserdatad/
