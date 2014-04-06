@@ -1,0 +1,45 @@
+namespace om636
+{
+	/////////////////////////////////////////////////////////////////////////////////////////////
+    // parser<T> 
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	template<class T, class U>
+    template<class V>
+	parser<T, U>::parser(V & u, context_type & w)
+    : m_lexer( u )
+    , m_context( w )
+	{}
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	template<class T, class U>
+	auto parser<T, U>::context() -> context_type &
+	{	return m_context; }
+			
+	////////////////////////////////////////////////////////////////////////////////////////////
+	template<class T, class U>
+	auto parser<T, U>::context() const -> const context_type & 
+	{	return m_context; }
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	template<class T, class U>
+	auto parser<T, U>::lexer() -> lexer_type & 
+	{	return m_lexer; } 
+			
+	////////////////////////////////////////////////////////////////////////////////////////////
+	template<class T, class U>
+	auto parser<T, U>::lexer() const -> const lexer_type &  
+	{	return m_lexer; } 
+
+	////////////////////////////////////////////////////////////////////////////////////////////
+	template<class T, class U>
+	auto parser<T, U>::interpret() -> context_type & 
+	{
+		auto t( m_lexer.current() );
+        while(t)
+        {
+            context_type::state(context())->on_token( context(), m_lexer.current() );
+            t = m_lexer.next();
+        }
+        return context();
+	}
+} 	// om636
