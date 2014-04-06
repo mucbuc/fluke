@@ -1,6 +1,3 @@
-#include <cassert>
-#define ASSERT( pred ) assert( pred )
-
 #include <fluke/src/lexer.h>
 #include <fluke/ohm/src/quemitter.h>
 #include <string>

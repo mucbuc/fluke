@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		562BBC1918F1B9AE002CD78B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 562BBC0118F1B9AE002CD78B /* main.cpp */; };
+		562BBC1A18F1B9AE002CD78B /* emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 562BBC1618F1B9AE002CD78B /* emitter.cpp */; };
 		56428B8B18E908ED00BAA571 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56428B8918E908ED00BAA571 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		562BBBF118F1B9AE002CD78B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		562BBBF218F1B9AE002CD78B /* .gitmodules */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmodules; sourceTree = "<group>"; };
+		562BBBF518F1B9AE002CD78B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		562BBBF618F1B9AE002CD78B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		562BBBF818F1B9AE002CD78B /* pset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pset.h; sourceTree = "<group>"; };
+		562BBBF918F1B9AE002CD78B /* pset.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pset.hxx; sourceTree = "<group>"; };
+		562BBBFA18F1B9AE002CD78B /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
+		562BBBFB18F1B9AE002CD78B /* queue.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = queue.hxx; sourceTree = "<group>"; };
+		562BBBFC18F1B9AE002CD78B /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		562BBBFD18F1B9AE002CD78B /* stack.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stack.hxx; sourceTree = "<group>"; };
+		562BBBFF18F1B9AE002CD78B /* SConstruct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SConstruct; sourceTree = "<group>"; };
+		562BBC0118F1B9AE002CD78B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		562BBC0218F1B9AE002CD78B /* SConscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SConscript; sourceTree = "<group>"; };
+		562BBC0318F1B9AE002CD78B /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
+		562BBC0418F1B9AE002CD78B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		562BBC0618F1B9AE002CD78B /* agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = agent.h; sourceTree = "<group>"; };
+		562BBC0718F1B9AE002CD78B /* agent.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = agent.hxx; sourceTree = "<group>"; };
+		562BBC0818F1B9AE002CD78B /* emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emitter.h; sourceTree = "<group>"; };
+		562BBC0918F1B9AE002CD78B /* emitter.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = emitter.hxx; sourceTree = "<group>"; };
+		562BBC0A18F1B9AE002CD78B /* listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listener.h; sourceTree = "<group>"; };
+		562BBC0B18F1B9AE002CD78B /* listener.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = listener.hxx; sourceTree = "<group>"; };
+		562BBC0C18F1B9AE002CD78B /* quemitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quemitter.h; sourceTree = "<group>"; };
+		562BBC0D18F1B9AE002CD78B /* quemitter.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = quemitter.hxx; sourceTree = "<group>"; };
+		562BBC0F18F1B9AE002CD78B /* .sconsign.dblite */ = {isa = PBXFileReference; lastKnownFileType = file; path = .sconsign.dblite; sourceTree = "<group>"; };
+		562BBC1218F1B9AE002CD78B /* SConscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SConscript; sourceTree = "<group>"; };
+		562BBC1318F1B9AE002CD78B /* SConstruct */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SConstruct; sourceTree = "<group>"; };
+		562BBC1518F1B9AE002CD78B /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		562BBC1618F1B9AE002CD78B /* emitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = emitter.cpp; sourceTree = "<group>"; };
+		562BBC1718F1B9AE002CD78B /* emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emitter.h; sourceTree = "<group>"; };
+		562BBC1818F1B9AE002CD78B /* emitter_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emitter_fwd.h; sourceTree = "<group>"; };
 		56428B7C18E9082F00BAA571 /* parser */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = parser; sourceTree = BUILT_PRODUCTS_DIR; };
 		56428B8918E908ED00BAA571 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		56428B8A18E908ED00BAA571 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
@@ -41,9 +73,128 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		562BBBF018F1B9AE002CD78B /* ohm */ = {
+			isa = PBXGroup;
+			children = (
+				562BBBF118F1B9AE002CD78B /* .gitignore */,
+				562BBBF218F1B9AE002CD78B /* .gitmodules */,
+				562BBBF318F1B9AE002CD78B /* lib */,
+				562BBC0418F1B9AE002CD78B /* README.md */,
+				562BBC0518F1B9AE002CD78B /* src */,
+				562BBC0E18F1B9AE002CD78B /* test */,
+			);
+			name = ohm;
+			path = ../../../ohm;
+			sourceTree = "<group>";
+		};
+		562BBBF318F1B9AE002CD78B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				562BBBF418F1B9AE002CD78B /* twice-size */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		562BBBF418F1B9AE002CD78B /* twice-size */ = {
+			isa = PBXGroup;
+			children = (
+				562BBBF518F1B9AE002CD78B /* .gitignore */,
+				562BBBF618F1B9AE002CD78B /* README.md */,
+				562BBBF718F1B9AE002CD78B /* src */,
+				562BBBFE18F1B9AE002CD78B /* test */,
+			);
+			path = "twice-size";
+			sourceTree = "<group>";
+		};
+		562BBBF718F1B9AE002CD78B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				562BBBF818F1B9AE002CD78B /* pset.h */,
+				562BBBF918F1B9AE002CD78B /* pset.hxx */,
+				562BBBFA18F1B9AE002CD78B /* queue.h */,
+				562BBBFB18F1B9AE002CD78B /* queue.hxx */,
+				562BBBFC18F1B9AE002CD78B /* stack.h */,
+				562BBBFD18F1B9AE002CD78B /* stack.hxx */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		562BBBFE18F1B9AE002CD78B /* test */ = {
+			isa = PBXGroup;
+			children = (
+				562BBBFF18F1B9AE002CD78B /* SConstruct */,
+				562BBC0018F1B9AE002CD78B /* src */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		562BBC0018F1B9AE002CD78B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				562BBC0118F1B9AE002CD78B /* main.cpp */,
+				562BBC0218F1B9AE002CD78B /* SConscript */,
+				562BBC0318F1B9AE002CD78B /* test.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		562BBC0518F1B9AE002CD78B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				562BBC0618F1B9AE002CD78B /* agent.h */,
+				562BBC0718F1B9AE002CD78B /* agent.hxx */,
+				562BBC0818F1B9AE002CD78B /* emitter.h */,
+				562BBC0918F1B9AE002CD78B /* emitter.hxx */,
+				562BBC0A18F1B9AE002CD78B /* listener.h */,
+				562BBC0B18F1B9AE002CD78B /* listener.hxx */,
+				562BBC0C18F1B9AE002CD78B /* quemitter.h */,
+				562BBC0D18F1B9AE002CD78B /* quemitter.hxx */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		562BBC0E18F1B9AE002CD78B /* test */ = {
+			isa = PBXGroup;
+			children = (
+				562BBC0F18F1B9AE002CD78B /* .sconsign.dblite */,
+				562BBC1018F1B9AE002CD78B /* build_debug */,
+				562BBC1218F1B9AE002CD78B /* SConscript */,
+				562BBC1318F1B9AE002CD78B /* SConstruct */,
+				562BBC1418F1B9AE002CD78B /* src */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		562BBC1018F1B9AE002CD78B /* build_debug */ = {
+			isa = PBXGroup;
+			children = (
+				562BBC1118F1B9AE002CD78B /* src */,
+			);
+			path = build_debug;
+			sourceTree = "<group>";
+		};
+		562BBC1118F1B9AE002CD78B /* src */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		562BBC1418F1B9AE002CD78B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				562BBC1518F1B9AE002CD78B /* debug.h */,
+				562BBC1618F1B9AE002CD78B /* emitter.cpp */,
+				562BBC1718F1B9AE002CD78B /* emitter.h */,
+				562BBC1818F1B9AE002CD78B /* emitter_fwd.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		56428B7318E9082F00BAA571 = {
 			isa = PBXGroup;
 			children = (
+				562BBBF018F1B9AE002CD78B /* ohm */,
 				56B4494518F0E1DE0025ABC6 /* src */,
 				56428B8818E908ED00BAA571 /* parser */,
 				56428B7D18E9082F00BAA571 /* Products */,
@@ -129,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562BBC1A18F1B9AE002CD78B /* emitter.cpp in Sources */,
+				562BBC1918F1B9AE002CD78B /* main.cpp in Sources */,
 				56428B8B18E908ED00BAA571 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +365,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/Users/markymark/work,
+					"/Users/markymark/work/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -224,7 +377,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/Users/markymark/work,
+					"/Users/markymark/work/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
