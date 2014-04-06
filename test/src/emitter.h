@@ -4,6 +4,33 @@
 #include <ohm/src/emitter.h>
 #include <ohm/src/quemitter.h>
 
+void check_emit_once()
+{
+    using namespace std;
+    using namespace om636;
+    typedef function<void(int)> function_type;
+    typedef control::Emitter< string, function_type > emitter_type;
+    typedef typename emitter_type::listener_type listener_type;
+    
+    emitter_type e;
+    unsigned counter( 0 ); 
+
+    auto l( e.once( "hello", [&](int){
+        ++counter;
+    } ) ); 
+
+    auto k( e.once( "allo", [&](int){
+        ++counter;
+    } ) ); 
+
+    e.emit( "hello", 0 ); 
+    e.emit( "allo", 9 ); 
+
+    ASSERT( counter == 2 );
+
+    cout << __FUNCTION__ << " passed" << endl;
+}
+
 void check_emit_with_args()
 {
     using namespace std;

@@ -48,7 +48,7 @@ namespace om636
             merge_batches();
             const batch_type & batches( copy_batches( e ) );
             process( batches );
-            m_once.clear();
+            m_once.erase(e);
         }
         
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ namespace om636
             merge_batches();
             const batch_type & batches( copy_batches( e ) );
             process( batches, arg );
-            m_once.clear();
+            m_once.erase(e);
         }
         
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ namespace om636
             merge_batches();
             const batch_type & batches( copy_batches( e ) );
             process( batches, first_arg, second_arg );
-            m_once.clear();
+            m_once.erase(e);
         }
         
         /////////////////////////////////////////////////////////////////////////////////////
