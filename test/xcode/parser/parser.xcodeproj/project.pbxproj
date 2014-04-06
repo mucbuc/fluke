@@ -26,6 +26,15 @@
 		56428B7C18E9082F00BAA571 /* parser */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = parser; sourceTree = BUILT_PRODUCTS_DIR; };
 		56428B8918E908ED00BAA571 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		56428B8A18E908ED00BAA571 /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test.h; sourceTree = "<group>"; };
+		56B4494618F0E1DE0025ABC6 /* lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lexer.h; sourceTree = "<group>"; };
+		56B4494718F0E1DE0025ABC6 /* lexer.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lexer.hxx; sourceTree = "<group>"; };
+		56B4494818F0E1DE0025ABC6 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		56B4494918F0E1DE0025ABC6 /* parser.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parser.hxx; sourceTree = "<group>"; };
+		56B4494A18F0E1DE0025ABC6 /* parserfwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parserfwd.h; sourceTree = "<group>"; };
+		56B4494B18F0E1DE0025ABC6 /* policies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = policies.h; sourceTree = "<group>"; };
+		56B4494C18F0E1DE0025ABC6 /* policies.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = policies.hxx; sourceTree = "<group>"; };
+		56B4494D18F0E1DE0025ABC6 /* token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
+		56B4494E18F0E1DE0025ABC6 /* token.hxx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = token.hxx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +51,7 @@
 		56428B7318E9082F00BAA571 = {
 			isa = PBXGroup;
 			children = (
+				56B4494518F0E1DE0025ABC6 /* src */,
 				56428B8818E908ED00BAA571 /* parser */,
 				56428B7D18E9082F00BAA571 /* Products */,
 			);
@@ -63,6 +73,23 @@
 			);
 			name = parser;
 			path = ../../src/parser;
+			sourceTree = "<group>";
+		};
+		56B4494518F0E1DE0025ABC6 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				56B4494618F0E1DE0025ABC6 /* lexer.h */,
+				56B4494718F0E1DE0025ABC6 /* lexer.hxx */,
+				56B4494818F0E1DE0025ABC6 /* parser.h */,
+				56B4494918F0E1DE0025ABC6 /* parser.hxx */,
+				56B4494A18F0E1DE0025ABC6 /* parserfwd.h */,
+				56B4494B18F0E1DE0025ABC6 /* policies.h */,
+				56B4494C18F0E1DE0025ABC6 /* policies.hxx */,
+				56B4494D18F0E1DE0025ABC6 /* token.h */,
+				56B4494E18F0E1DE0025ABC6 /* token.hxx */,
+			);
+			name = src;
+			path = ../../../src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +263,7 @@
 				56428B8718E9082F00BAA571 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
