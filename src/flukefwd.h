@@ -12,7 +12,7 @@ namespace om636
 		template<class T, class U> 
 		struct lexer;
 
-		template< class T, class U, class V = std::set< char > >
+		template< class T, class U, class V = std::set< std::string > >
 		class brute_lexer;
 	}
 }

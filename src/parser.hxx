@@ -27,15 +27,14 @@ namespace om636
 			typedef typename analyzer_type::callback_type callback_type; 
 			typedef typename callback_type::argument_type argument_type;
 
-			auto onFunction = [&](const argument_type & value){
-				analyzer.emit( '*', value );
-				std::cout << value;
-			};
+			auto onFunction( [&](const argument_type & value){
+				analyzer.emit( "token", value );
+			} );
 
-			m_listener = analyzer.on( ' ', onFunction ); 
-			m_listener = analyzer.on( '\n', onFunction );
-			m_listener = analyzer.on( '\t', onFunction );
-			m_listener = analyzer.on( ';', onFunction );
+			m_listener.push_back( analyzer.on( " ", onFunction ) );
+			m_listener.push_back( analyzer.on( "\n", onFunction ) );
+			m_listener.push_back( analyzer.on( "\t", onFunction ) );
+			m_listener.push_back( analyzer.on( ";", onFunction ) );
 
 	        return context();
 		}

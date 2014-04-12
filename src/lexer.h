@@ -49,7 +49,8 @@ namespace om636
 			// markymarker
 			typedef std::string string_type; 
 
-			brute_lexer(const set_type & = { ' ', '\n', '\t' } );
+            brute_lexer();
+			brute_lexer(const set_type &);
 			virtual ~brute_lexer() = default;
 
 			void split( stream_type &, analyzer_type & ) const;

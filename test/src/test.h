@@ -17,7 +17,7 @@ void check_parser()
     using namespace om636;
     using namespace fluke;
     
-    typedef control::Quemitter< char, function<void( string )> > emitter_type;
+    typedef control::Quemitter< string, function<void( string )> > emitter_type;
     typedef brute_parser< emitter_type, int > parser_type;
 
     emitter_type emitter;
@@ -25,9 +25,16 @@ void check_parser()
     parser_type p( i );
 
     p.interpret( emitter );
+
+    bool passed( false ); 
+    auto listener( emitter.on( "token", [&](const string & value){
+        passed = passed || value == "hello";
+    } ) );
+
+    emitter.emit( " ", "hello" );
     
-    emitter.emit( ' ', "hello" );
-    
+    ASSERT( passed );
+
     cout << "check_parser passed " << endl;
 }
 
@@ -37,18 +44,18 @@ void check_lexer()
     using namespace om636;
     using namespace fluke;
     
-    typedef control::Quemitter< char, function<void( string )> > emitter_type;
+    typedef control::Quemitter< string, function<void( string )> > emitter_type;
     typedef brute_lexer< istream, emitter_type > lexer_type;
     
     emitter_type emitter;
     unsigned counter;
 
-    auto listener( emitter.once( '\n', [&](string val){
+    auto listener( emitter.once( "\n", [&](string val){
         if (val == "3")
             ++counter;
     } ) );
     
-    auto listener2( emitter.once( ';', [&](string val ){
+    auto listener2( emitter.once( ";", [&](string val ){
         if (val == "5")
             ++counter;
     } ) );
@@ -57,8 +64,7 @@ void check_lexer()
     s << "5;";
     s << "3\n";
     
-    lexer_type lexer;
-    lexer.delimiters().insert( ';' );
+    lexer_type lexer( { " ", "\n", "\t", ";" } );
     lexer.split( s, emitter );
 
     ASSERT( counter == 2 );

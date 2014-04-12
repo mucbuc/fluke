@@ -2,9 +2,16 @@ namespace om636
 {
 	namespace fluke
 	{
-		/////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
 	    // brute_lexer<T, U, V>
 		/////////////////////////////////////////////////////////////////////////////////////////////
+		template<class T, class U, class V>
+		brute_lexer<T, U, V>::brute_lexer()
+		: base_type()
+		, m_delimiters()
+		{}
+        
+        /////////////////////////////////////////////////////////////////////////////////////////////
 		template<class T, class U, class V>
 		brute_lexer<T, U, V>::brute_lexer(const set_type & delimiters)
 		: base_type()
@@ -20,9 +27,10 @@ namespace om636
 	    	
 	    	while (stream.get(front))
 	    	{
-	    		if (m_delimiters.find(front) != m_delimiters.end())
+                string_type delimiter( 1, front ); 
+                if (m_delimiters.find(delimiter) != m_delimiters.end())
 	    		{
-	    			analyzer.emit( front, value );
+	    			analyzer.emit( delimiter, value );
 	    			value.clear(); 
 	    		}
 	    		else

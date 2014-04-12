@@ -69,7 +69,7 @@ namespace om636
 			typedef typename analyzer_type::listener_type listener_type;
 
 			context_type & m_context;
-			listener_type m_listener;
+            std::vector< listener_type > m_listener;
 		};
     } // fluke
 }	// om636
