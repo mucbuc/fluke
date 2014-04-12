@@ -4,10 +4,29 @@
 #include <string>
 #include <map>
 
-#include <src/lexer.h>
 #include <lib/ohm/src/quemitter.h>
 
+#include <src/lexer.h>
+#include <src/parser.h>
+
 #include "debug.h"
+
+void check_parser()
+{
+    using namespace std;
+    using namespace om636;
+    using namespace fluke;
+    
+    typedef control::Quemitter< string, function<void( string )> > emitter_type;
+    typedef brute_parser< emitter_type, int > parser_type;
+
+    emitter_type emitter;
+    int i;
+    parser_type p( i );
+
+    p.interpret( emitter );
+    cout << "check_parser passed " << endl;
+}
 
 void check_lexer()
 {
@@ -16,6 +35,7 @@ void check_lexer()
     using namespace fluke;
     
     typedef control::Quemitter< string, function<void( string )> > emitter_type;
+    typedef brute_lexer< istream, emitter_type > lexer_type;
     
     emitter_type emitter;
     unsigned counter;
@@ -34,7 +54,6 @@ void check_lexer()
     s << "5;";
     s << "3\n";
     
-    typedef brute_lexer< istream, emitter_type > lexer_type;
     lexer_type lexer;
     lexer.delimiters()['\n'] = "new line";
     lexer.delimiters()[';'] = "semi colon";

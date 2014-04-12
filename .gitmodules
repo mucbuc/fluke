@@ -1,3 +1,6 @@
 [submodule "lib/ohm"]
 	path = lib/ohm
 	url = https://github.com/mucbuc/ohm
+[submodule "lib/om636"]
+	path = lib/om636
+	url = https://github.com/mucbuc/om636

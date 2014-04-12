@@ -42,8 +42,8 @@ namespace om636
 		{
 			typedef lexer< T, U > base_type;
 		public:
-			typedef typename base_type::stream_type stream_type;
-			typedef typename base_type::analyzer_type analyzer_type;
+			using typename base_type::stream_type;
+			using typename base_type::analyzer_type;
 			typedef V map_type; 
 
 			// markymarker
