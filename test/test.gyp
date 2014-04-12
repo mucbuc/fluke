@@ -5,8 +5,8 @@
 	],#inclues
 	'target_defaults': {
 		'sources': [
-			'src/lexer.h',
-			'src/lexer.cpp',
+			'src/parser/main.cpp',
+			'src/parser/test.h',
 		], #sources
 		'include_dirs': [
 			'../'

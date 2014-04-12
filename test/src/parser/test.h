@@ -1,5 +1,5 @@
-#include <fluke/src/lexer.h>
-#include <fluke/ohm/src/quemitter.h>
+#include <src/lexer.h>
+#include <lib/ohm/src/quemitter.h>
 #include <string>
 #include <iostream>
 #include <sstream>
