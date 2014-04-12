@@ -6,6 +6,7 @@
 		'sources': [
 			'src/parser/main.cpp',
 			'src/parser/test.h',
+			'src/parser/debug.h'
 		], #sources
 		'include_dirs': [
 			'../'

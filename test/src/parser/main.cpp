@@ -1,6 +1,8 @@
+#define ASSERT( P )
+
 #include <iostream>
 #include "test.h"
-#include <fluke/ohm/src/quemitter.h>
+#include <lib/ohm/src/quemitter.h>
 
 int main(int argc, const char * argv[])
 {
