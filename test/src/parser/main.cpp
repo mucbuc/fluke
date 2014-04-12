@@ -1,5 +1,3 @@
-#define ASSERT( P )
-
 #include <iostream>
 #include "test.h"
 #include <lib/ohm/src/quemitter.h>
