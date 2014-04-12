@@ -4,9 +4,9 @@
 	],#inclues
 	'target_defaults': {
 		'sources': [
-			'src/parser/main.cpp',
-			'src/parser/test.h',
-			'src/parser/debug.h'
+			'src/main.cpp',
+			'src/test.h',
+			'src/debug.h'
 		], #sources
 		'include_dirs': [
 			'../'

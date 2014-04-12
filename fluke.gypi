@@ -7,6 +7,7 @@
 			'.'
 		],
 		'sources': [
+			'src/flukefwd.h'
 			'src/lexer.h',
 			'src/lexer.hxx'
 		],
