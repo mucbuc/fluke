@@ -27,10 +27,21 @@ namespace om636
 			typedef typename analyzer_type::callback_type callback_type; 
 			typedef typename callback_type::argument_type argument_type;
 
-			m_listener = analyzer.on( "token", [](const argument_type & value){
-		
+			auto onFunction = [&](const argument_type & value){
+				analyzer.emit( '*', value );
+				std::cout << value;
+			};
 
-			});
+			m_listener = analyzer.on( ' ', onFunction ); 
+			m_listener = analyzer.on( '\n', onFunction );
+			m_listener = analyzer.on( '\t', onFunction );
+			m_listener = analyzer.on( ';', onFunction );
+
+	        return context();
+		}
+	} 	// fluke
+} 	// om636
+
 
 			// auto t( m_lexer.current() );
 	  //       while(t)
@@ -38,12 +49,6 @@ namespace om636
 	  //           context_type::state(context())->on_token( context(), m_lexer.current() );
 	  //           t = m_lexer.next();
 	  //       }
-	        return context();
-		}
-	} 	// fluke
-} 	// om636
-
-
 	// /////////////////////////////////////////////////////////////////////////////////////////////
 	// template<class T>
 	// template<class U>

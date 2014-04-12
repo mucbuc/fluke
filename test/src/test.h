@@ -17,7 +17,7 @@ void check_parser()
     using namespace om636;
     using namespace fluke;
     
-    typedef control::Quemitter< string, function<void( string )> > emitter_type;
+    typedef control::Quemitter< char, function<void( string )> > emitter_type;
     typedef brute_parser< emitter_type, int > parser_type;
 
     emitter_type emitter;
@@ -26,7 +26,7 @@ void check_parser()
 
     p.interpret( emitter );
     
-    emitter.emit( "token", "hello" );
+    emitter.emit( ' ', "hello" );
     
     cout << "check_parser passed " << endl;
 }
