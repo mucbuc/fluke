@@ -1,7 +1,7 @@
 #ifndef QUEMITTER_H_INCLUDEGUARD_QMNEOIUOIUEN3242
 #define QUEMITTER_H_INCLUDEGUARD_QMNEOIUOIUEN3242
 
-#include <ohm/lib/twice-size/src/queue.h>
+#include <lib/twice-size/src/queue.h>
 #include "emitter.h"
 
 namespace om636

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <ohm/src/emitter.h>
-#include <ohm/src/quemitter.h>
+#include <src/emitter.h>
+#include <src/quemitter.h>
 
 #include "debug.h"
 
