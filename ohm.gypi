@@ -5,11 +5,7 @@
 	'target_defaults': {
 		'include_dirs': [
 			'.'
-<<<<<<< HEAD
 		], #include_dirs	
-=======
-		],
->>>>>>> origin
 		'sources': [
 			'src/agent.h',
 			'src/agent.hxx',
