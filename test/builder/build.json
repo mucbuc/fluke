@@ -1,5 +1,0 @@
-{
-	"working": "../src/parser",
-	"source": "../src/parser/main.cpp",
-	"headerSearch": "../../../",
-}
