@@ -1,7 +1,6 @@
 {
 	'includes':[
 		'../fluke.gypi',
-		'../lib/ohm/ohm.gypi'
 	],#inclues
 	'target_defaults': {
 		'sources': [
