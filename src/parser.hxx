@@ -24,9 +24,13 @@ namespace om636
 		template<class T, class U>
 		auto brute_parser<T, U>::interpret(analyzer_type & analyzer) -> context_type & 
 		{
-			// analyzer.on( "semi colon",  );
-			// analyzer.on( "space", );
-			// analyzer.on( " ", );
+			typedef typename analyzer_type::callback_type callback_type; 
+			typedef typename callback_type::argument_type argument_type;
+
+			m_listener = analyzer.on( "token", [](const argument_type & value){
+		
+
+			});
 
 			// auto t( m_lexer.current() );
 	  //       while(t)

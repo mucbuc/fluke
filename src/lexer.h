@@ -44,21 +44,21 @@ namespace om636
 		public:
 			using typename base_type::stream_type;
 			using typename base_type::analyzer_type;
-			typedef V map_type; 
+			typedef V set_type; 
 
 			// markymarker
 			typedef std::string string_type; 
 
-			brute_lexer(const map_type & = { std::make_pair( '\n', "line end" ) } );
+			brute_lexer(const set_type & = { ' ', '\n', '\t' } );
 			virtual ~brute_lexer() = default;
 
 			void split( stream_type &, analyzer_type & ) const;
 
-			map_type & delimiters();
-			const map_type & delimiters() const;
+			set_type & delimiters();
+			const set_type & delimiters() const;
 
 		private: 
-			map_type m_delimiters;
+			set_type m_delimiters;
 		};
 
     } // fluke

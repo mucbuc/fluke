@@ -25,6 +25,9 @@ void check_parser()
     parser_type p( i );
 
     p.interpret( emitter );
+    
+    emitter.emit( "token", "hello" );
+    
     cout << "check_parser passed " << endl;
 }
 
@@ -34,19 +37,19 @@ void check_lexer()
     using namespace om636;
     using namespace fluke;
     
-    typedef control::Quemitter< string, function<void( string )> > emitter_type;
+    typedef control::Quemitter< char, function<void( string )> > emitter_type;
     typedef brute_lexer< istream, emitter_type > lexer_type;
     
     emitter_type emitter;
     unsigned counter;
 
-    auto listener( emitter.once( "new line", [&](string val){
-        if (val == "3\n")
+    auto listener( emitter.once( '\n', [&](string val){
+        if (val == "3")
             ++counter;
     } ) );
     
-    auto listener2( emitter.once( "semi colon", [&](string val ){
-        if (val == "5;")
+    auto listener2( emitter.once( ';', [&](string val ){
+        if (val == "5")
             ++counter;
     } ) );
     
@@ -55,8 +58,7 @@ void check_lexer()
     s << "3\n";
     
     lexer_type lexer;
-    lexer.delimiters()['\n'] = "new line";
-    lexer.delimiters()[';'] = "semi colon";
+    lexer.delimiters().insert( ';' );
     lexer.split( s, emitter );
 
     ASSERT( counter == 2 );

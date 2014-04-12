@@ -66,8 +66,10 @@ namespace om636
 			// objective
 			context_type & interpret( analyzer_type & );
 		private:
+			typedef typename analyzer_type::listener_type listener_type;
 
 			context_type & m_context;
+			listener_type m_listener;
 		};
     } // fluke
 }	// om636

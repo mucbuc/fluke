@@ -6,7 +6,7 @@ namespace om636
 	    // brute_lexer<T, U, V>
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		template<class T, class U, class V>
-		brute_lexer<T, U, V>::brute_lexer(const map_type & delimiters)
+		brute_lexer<T, U, V>::brute_lexer(const set_type & delimiters)
 		: base_type()
 		, m_delimiters( delimiters )
 		{}
@@ -20,27 +20,26 @@ namespace om636
 	    	
 	    	while (stream.get(front))
 	    	{
-	    		value += front;
-
-	    		auto p( m_delimiters.find(front) );
-	    		if (p != m_delimiters.end())
+	    		if (m_delimiters.find(front) != m_delimiters.end())
 	    		{
-	    			analyzer.emit( p->second, value );
+	    			analyzer.emit( front, value );
 	    			value.clear(); 
 	    		}
+	    		else
+	    			value += front;
 	    	}
 		}
 
 		/////////////////////////////////////////////////////////////////////////////////////////////
 	    template<class T, class U, class V>
-		auto brute_lexer<T, U, V>::delimiters() -> map_type & 
+		auto brute_lexer<T, U, V>::delimiters() -> set_type & 
 		{
 			return m_delimiters;
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
 	    template<class T, class U, class V>
-		auto brute_lexer<T, U, V>::delimiters() const -> const map_type & 
+		auto brute_lexer<T, U, V>::delimiters() const -> const set_type & 
 		{
 			return m_delimiters;
 		}
