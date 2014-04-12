@@ -15,43 +15,22 @@
 
 */
 
-#ifndef _lexer_H_8900700
-#define _lexer_H_8900700
-
-#include <om636/src/parser/parserfwd.h>
+#ifndef LEXER_H_8900700
+#define LEXER_H_8900700
 
 namespace om636
 {
-	template<class T, class U>
-	class lexer
+	namespace lexer
 	{
-	public:
-		// types
-		typedef T token_type;
-		typedef U stream_type;		
-			
-        lexer() = delete;
-        lexer( const lexer & ) = delete;
-        lexer & operator=(const lexer &) = delete;
-		~lexer() = default;
+		template<class T, class U, class V>
+	    void tokenize( T &, U &, const V & );
         
-        // resources
-        lexer(stream_type &);
-	    
-        // access
-		const size_t & count() const;
-		const token_type & next();
-		const token_type & current() const;	
-    
-    private:
-        stream_type & m_stream;
-		token_type m_token;
-		size_t m_count;
-		char m_front;
-    };
-    
+        void fuck(); 
+        
+   } // lexer
+
 }	// om636
 
 #include "lexer.hxx"
 
-#endif // _lexer_H_8900700
+#endif // LEXER_H_8900700

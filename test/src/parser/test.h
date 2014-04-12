@@ -1,55 +1,48 @@
-#include <cassert>
-#define ASSERT( pred ) assert( pred )
-
-#include <om636/src/parser/token.h>
-#include <om636/src/parser/lexer.h>
+#include <src/lexer.h>
+#include <lib/ohm/src/quemitter.h>
 #include <string>
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <map>
 
-void check_token_number()
+void check_tokenize()
 {
     using namespace om636;
 	using namespace std;
-	
-	typedef token< string > token_type;
+    using namespace lexer;
+    
+	typedef map< char, string > map_type; 
+    typedef control::Quemitter< string, function<void( string )> > emitter_type;
+
+    unsigned counter;
     stringstream s;
+    emitter_type emitter;
+    map_type map;
 
+    auto listener( emitter.once( "new line", [&](string val){
+        if (val == "3\n")
+        {
+            ++counter;
+        }
+    } ) );
+    
+    auto listener2( emitter.once( "semi colon", [&](string val ){
+        if (val == "5;")
+        {
+            ++counter;
+        }
+    } ) );
+    
+    map['\n'] = "new line";
+    map[';'] = "semi colon";
+    
+    s << "5;";
     s << "3\n";
-    s << "4\t";
-    s << "5 ";
-    s << "3.13 ";
-
-    token_type a( s );
-    ASSERT( a.type() == token_type::number && a.name() == "3" );
     
-    token_type b( s );
-    ASSERT( b.type() == token_type::number && b.name() == "4" );
+    lexer::tokenize( s, emitter, map );
+
+    ASSERT( counter == 2 );
     
-    token_type c( s );
-    ASSERT( c.type() == token_type::number && c.name() == "5" );    
-    
-    token_type d( s );
-    ASSERT( d.type() == token_type::number && d.name() == "3.13" );
-    
-    cout << "check_token_number passed " << endl;
-}
-
-void check_terminator()
-{
- 	using namespace om636; 
-	using namespace std;
-	
-	typedef token< string > token_type; 
-	typedef lexer< token_type, stringstream > lexer_type;
-
-	stringstream s;
-	s << ";";
-	lexer_type t( s ); 
-
-    auto type( t.current().type() );
-	ASSERT( type == token_type::terminator );
-
-	cout << "check terminator passed " << endl;
+    cout << "check_tokenize passed " << endl;
 }
