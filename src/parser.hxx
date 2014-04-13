@@ -2,6 +2,16 @@ namespace om636
 {
 	namespace fluke
 	{
+		namespace fluke_private
+		{
+			template<class T> 
+			bool is_numeric( const T & c )
+			{
+				enum { period = '.' };
+				return isdigit(c) || c == period;
+			}
+		}
+
 		/////////////////////////////////////////////////////////////////////////////////////////////
 	    // parser<T> 
 		/////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +38,20 @@ namespace om636
 			typedef typename callback_type::argument_type argument_type;
 
 			auto onFunction( [&](const argument_type & value){
-				analyzer.emit( "token", value );
+				
+				using namespace std;
+
+				typedef typename argument_type::value_type value_type; 
+
+				value_type front( value[0] );
+
+				enum { semicolon = ';' };
+				if (fluke_private::is_numeric(front))
+					analyzer.emit( "number", value );
+				else if (isalpha(front))
+					analyzer.emit( "word", value );
+				else if (front != semicolon)
+					analyzer.emit( "operator", value ); 
 			} );
 
 			m_listener.push_back( analyzer.on( " ", onFunction ) );
@@ -40,60 +63,3 @@ namespace om636
 		}
 	} 	// fluke
 } 	// om636
-
-
-			// auto t( m_lexer.current() );
-	  //       while(t)
-	  //       {
-	  //           context_type::state(context())->on_token( context(), m_lexer.current() );
-	  //           t = m_lexer.next();
-	  //       }
-	// /////////////////////////////////////////////////////////////////////////////////////////////
-	// template<class T>
-	// template<class U>
-	// void token<T>::read_next( U & in, char & front )
-	// {
-	// 	while (isspace(front))
-	// 		if (!in.get(front))
-	// 		{
-	// 			m_type = terminator;
-	// 			return;		
-	// 		}
-
-	// 	enum { period = '.', semicolon = ';' };
-	// 	if (isalpha(front))
-	// 	{
-	// 		m_type = variable;                          // every alphabetic is a variable ??? 
-	// 		do
-	// 			m_name.push_back(front);
-	// 		while (in.get(front) && isalpha(front) ); // this seems arbitrary, what about the variables names including numbers
-	// 	}
-	// 	else if (isdigit(front) || front == period)
-	// 	{	
-	// 	#ifdef NDEBUG
-	// 		bool _period( front == period );
-	// 	#endif 
-
-	// 		m_type = number;
-
-	// 		do
-	// 		{		
-	// 		#ifdef NDEBUG	
-	// 			ASSERT( !_period || front != period );
-	// 			_period = front == period;
-	// 		#endif 	
-
-	// 			m_name.push_back(front);
-	// 			in.get(front);
-	// 		}
-	// 		while (isdigit(front) || front == period);
-	// 	}
-	// 	else if (front == semicolon)
-	// 		m_type = terminator;
-	// 	else
-	// 	{ 
-	// 		m_type = _operator;
-	// 		m_name.push_back(front);
-	// 		in.get(front);
-	// 	}
-	// }

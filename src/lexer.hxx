@@ -22,19 +22,21 @@ namespace om636
 	    template<class T, class U, class V>
 		void brute_lexer<T, U, V>::split( stream_type & stream, analyzer_type & analyzer ) const
 		{
-	    	string_type value;
-	    	string_type::value_type front;
-	    	
+	    	typedef string_type::value_type value_type;
+	    	string_type result;
+	    	value_type front;
+
 	    	while (stream.get(front))
 	    	{
-                string_type delimiter( 1, front ); 
-                if (m_delimiters.find(delimiter) != m_delimiters.end())
+	    		string_type delimiter(1, front);
+                if (	m_delimiters.find(delimiter) 
+					!= 	m_delimiters.end())
 	    		{
-	    			analyzer.emit( delimiter, value );
-	    			value.clear(); 
+	    			analyzer.emit( delimiter, result );
+	    			result.clear();
 	    		}
-	    		else
-	    			value += front;
+	    		else 
+	    			result += front;
 	    	}
 		}
 

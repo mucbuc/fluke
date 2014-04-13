@@ -59,6 +59,9 @@ namespace om636
 			const set_type & delimiters() const;
 
 		private: 
+			template<class W> 
+			bool check(W);
+
 			set_type m_delimiters;
 		};
 

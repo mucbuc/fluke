@@ -26,16 +26,30 @@ void check_parser()
 
     p.interpret( emitter );
 
-    bool passed( false ); 
-    auto listener( emitter.on( "token", [&](const string & value){
-        passed = passed || value == "hello";
+    unsigned passed( 0 ); 
+    
+    auto listener_word( emitter.on( "word", [&](const string & value){
+        if (value == "hello")
+            ++passed;
     } ) );
 
-    emitter.emit( " ", "hello" );
+    auto listener_number( emitter.on( "number", [&](const string & value){
+        if (value == "3.1416")
+            ++passed;
+    } ) );
     
-    ASSERT( passed );
+    auto listener_operator( emitter.on( "operator", [&](const string & value){
+        if (value == "+=");
+            ++passed;
+    } ) );
 
-    cout << "check_parser passed " << endl;
+    emitter.emit( "word", "hello" );
+    emitter.emit( "number", "3.1416" );
+    emitter.emit( "operator", "+=" );
+    
+    ASSERT( passed == 3 );
+
+    cout << __FUNCTION__ << " passed " << endl;
 }
 
 void check_lexer()
