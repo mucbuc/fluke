@@ -1,16 +1,13 @@
-#define ASSERT( P )
-
 #include <iostream>
-#include "test.h"
+
 #include <lib/ohm/src/quemitter.h>
+
+#include "test.h"
 
 int main(int argc, const char * argv[])
 {
-    check_tokenize();
-
-    std::cout << "done" << std::endl;
-    
-    
+    check_lexer();
+    check_parser();
     return 0;
 }
 

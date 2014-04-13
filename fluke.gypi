@@ -7,8 +7,11 @@
 			'.'
 		],
 		'sources': [
+			'src/flukefwd.h',
 			'src/lexer.h',
-			'src/lexer.hxx'
+			'src/lexer.hxx',
+			'src/parser.h',
+			'src/parser.hxx',
 		],
 		'cflags': [ '-std=c++11', '-stdlib=libc++' ],
 		'ldflags': [ '-stdlib=libc++' ],

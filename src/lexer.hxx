@@ -1,30 +1,57 @@
 namespace om636
 {
-	namespace lexer
+	namespace fluke
 	{
-		/////////////////////////////////////////////////////////////////////////////////////////////
-	    // tokenize<T, U, V>
+        /////////////////////////////////////////////////////////////////////////////////////////////
+	    // brute_lexer<T, U, V>
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		template<class T, class U, class V>
-		void tokenize(T & stream, U & analyzer, const V & event_map ) 
+		brute_lexer<T, U, V>::brute_lexer()
+		: base_type()
+		, m_delimiters()
+		{}
+        
+        /////////////////////////////////////////////////////////////////////////////////////////////
+		template<class T, class U, class V>
+		brute_lexer<T, U, V>::brute_lexer(const set_type & delimiters)
+		: base_type()
+		, m_delimiters( delimiters )
+		{}
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////
+	    template<class T, class U, class V>
+		void brute_lexer<T, U, V>::split( stream_type & stream, analyzer_type & analyzer ) const
 		{
-	    	typedef typename T::char_type char_type;
-	    	typedef typename U::callback_type::argument_type value_type;
-
-	    	char_type front;
-	    	value_type value;
+	    	typedef string_type::value_type value_type;
+	    	string_type result;
+	    	value_type front;
 
 	    	while (stream.get(front))
 	    	{
-	    		value += front;
-
-	    		auto p( event_map.find(front) );
-	    		if (p != event_map.end())
+	    		string_type delimiter(1, front);
+                if (	m_delimiters.find(delimiter) 
+					!= 	m_delimiters.end())
 	    		{
-	    			analyzer.emit( p->second, value );
-	    			value.clear(); 
+	    			analyzer.emit( delimiter, result );
+	    			result.clear();
 	    		}
+	    		else 
+	    			result += front;
 	    	}
-	    }
-	}	// lexer
-}	// om636
+		}
+
+		/////////////////////////////////////////////////////////////////////////////////////////////
+	    template<class T, class U, class V>
+		auto brute_lexer<T, U, V>::delimiters() -> set_type & 
+		{
+			return m_delimiters;
+		}
+		
+		/////////////////////////////////////////////////////////////////////////////////////////////
+	    template<class T, class U, class V>
+		auto brute_lexer<T, U, V>::delimiters() const -> const set_type & 
+		{
+			return m_delimiters;
+		}
+	}	// fluke
+}	// om636 
