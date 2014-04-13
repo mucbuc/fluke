@@ -19,7 +19,8 @@ void check_parser()
     
     typedef control::Quemitter< string, function<void( string )> > emitter_type;
     typedef brute_parser< emitter_type, int > parser_type;
-
+    typedef brute_lexer< istream, emitter_type > lexer_type;
+    
     emitter_type emitter;
     int i;
     parser_type p( i );
@@ -42,10 +43,12 @@ void check_parser()
         if (value == "+=");
             ++passed;
     } ) );
-
-    emitter.emit( "word", "hello" );
-    emitter.emit( "number", "3.1416" );
-    emitter.emit( "operator", "+=" );
+    
+    stringstream s;
+    s << "hello 3.1416 += ";
+    
+    lexer_type lexer( { " " } );
+    lexer.split( s, emitter );
     
     ASSERT( passed == 3 );
 
