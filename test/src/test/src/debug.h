@@ -3,4 +3,4 @@
 
 #include <test/lib/om636/src/core/assert.h>
 
-#endif // DEBUG_H_KDJFASFLAKJFAFR2324234
+#endif //DEBUG_H
