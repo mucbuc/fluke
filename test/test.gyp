@@ -1,7 +1,6 @@
 {
 	'includes':[
 		'../fluke.gypi',
-		'lib/om636/om636.gypi',
 	],#inclues
 	'target_defaults': {
 		'sources': [

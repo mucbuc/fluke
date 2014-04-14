@@ -1,6 +1,7 @@
 {
 	'includes': [
-		'lib/ohm/ohm.gypi'
+		'lib/ohm/ohm.gypi',
+		'lib/om636/om636.gypi'
 	],
 	'target_defaults': {
 		'include_dirs': [

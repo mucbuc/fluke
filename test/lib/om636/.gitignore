@@ -1,8 +1,0 @@
-.DS_Store
-.sconsign.dblite
-test/components/persistent_storage.dat
-node_modules/
-build_debug/
-xcuserdata/
-xcuserdatad/
-*.xcuserdatad/
