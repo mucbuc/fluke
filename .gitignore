@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 build/
 *.xcodeproj/
 node_modules/
 .DS_Store
-=======
-.DS_Store
-build/
->>>>>>> push
+
