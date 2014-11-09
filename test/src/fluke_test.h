@@ -6,8 +6,8 @@
 
 #include <lib/ohm/src/quemitter.h>
 
-#include "lexer.h"
-#include "parser.h"
+#include <lib/fluke/src/lexer.h>
+#include <lib/fluke/src/parser.h>
 
 
 void check_parser()
@@ -39,7 +39,7 @@ void check_parser()
     } ) );
     
     auto listener_operator( emitter.on( "operator", [&](const string & value){
-        if (value == "+=");
+        if (value == "+=")
             ++passed;
     } ) );
     
