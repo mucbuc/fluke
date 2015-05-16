@@ -2,7 +2,8 @@
 
 var assert = require( 'assert' )
   , cp = require( 'child_process' )
-  , Reader = require( './Reader' );
+  , Reader = require( './Reader' )
+  , join = require( 'path' ).join;
 
 function update( dependencies, index ) {
 	if (typeof index === 'undefined') {
@@ -12,7 +13,9 @@ function update( dependencies, index ) {
 	if (index < dependencies.length) {
 		var name = Reader.libName( dependencies[index] );
 		cp.exec( 
-			'git subtree pull -P ' + name + ' ' + name + ' master --squash', 
+			'git subtree pull -P ' 
+			+ join( Reader.readOutputDir(), name ) 
+			+ ' ' + name + ' master --squash', 
 			function(error, stdout, stderr) {
 				if (error) throw error;
 				console.log( stdout );

@@ -5,7 +5,8 @@ var assert = require( 'assert' )
   , cp = require( 'child_process' )
   , emitter = new events.EventEmitter()
   , Reader = require( './Reader' )
-  , program = require( 'commander' ); 
+  , program = require( 'commander' )
+  , join = require( 'path' ).join; 
 
 program
 	.version( '0.0.0' )
@@ -18,7 +19,7 @@ emitter.on( 'addSubtree', function( dependency, name ) {
 			'subtree',
 			'add', 
 			'-P',
-			name, 
+			join( Reader.readOutputDir(), name ), 
 			name,
 			'master', 
 			'--squash'
