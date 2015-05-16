@@ -6,7 +6,7 @@
 					'OS=="mac"', {
 						'xcode_settings': {
 							'OTHER_CFLAGS': [
-								'-std=c++11', '-stdlib=libc++'
+								#'-std=c++11', '-stdlib=libc++'
 							],
 						}#xcode-settings
 					} #mac

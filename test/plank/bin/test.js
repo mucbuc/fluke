@@ -17,11 +17,24 @@ assert( typeof copy === 'function' );
 
 program
 	.version( '0.0.0' )
+	.option( '-p, --path [path]', 'test path' )
+	.option( '-o, --output [path]', 'build output' )
 	.option( '-g, --gcc', 'use gcc compiler' )
 	.parse( process.argv );
 
-program.path = path.join( __dirname, '../..' );
-program.output = path.join( __dirname, '../..', 'build' );
+if (!program.path) {
+	program.path = path.join( __dirname, '../..' );
+}
+else {
+	program.path = path.join( __dirname, '../..', program.path );
+}
+
+if (!program.output) {
+	program.output = path.join( __dirname, '../..', 'build' );
+}
+else {
+	program.output = path.join( __dirname, '../..', program.output );
+}
 
 attachLogic( emitter );
 
@@ -122,6 +135,7 @@ function attachLogic(emitter) {
 		var buildDir = program.output;
 
 		makePathIfNone(buildDir, function() {
+
 			var include = program.gcc ? 'plank/def/cpp11-gcc.gypi' : 'plank/def/cpp11.gypi';
 			var args = [
 					defFile,
@@ -145,7 +159,6 @@ function attachLogic(emitter) {
 			.on( 'close', function( code ) {
 				cb( code, buildDir );
 			});
-
 		});
 
 		function makePathIfNone( path, cb ) {
@@ -160,7 +173,6 @@ function attachLogic(emitter) {
 
 	function build( defFile, buildDir, cb ) {
 		readTargetName( defFile, program.path, function( targetName ) { 
-			
 			console.log( buildDir );
 			var child; 
 			if (program.gcc) {
@@ -196,22 +208,22 @@ function attachLogic(emitter) {
 	}
 
 	function run( defFile, testDir, target, cb ) {
-		
+	
 		var execPath;
 		if (program.gcc) {
 			testDir = path.join( testDir, 'out' );
 		}
 		execPath = path.join( testDir, 'Default', target );
-		
 		console.log( execPath );
 		
 		cp.spawn( 
 			execPath, 
-			[], {
+			[ 'http://localhost:3000' ], {
 			stdio: 'pipe'
 		})
 		.on( 'close', function( code ) {
 			cb( code );
+			server.kill();
 		})
 		.stdout.on( 'data', function( data ) {
 			cursor.blue();
