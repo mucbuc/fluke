@@ -10,7 +10,8 @@
 		'type': 'executable',
 		'sources': [
 			'../test/src/main.cpp',
-			'../test/src/test.h'
+			#'../test/src/test.h',
+			'../test/src/lexer.h'
 		], #sources
 		'include_dirs': [
 			'plank/src/',

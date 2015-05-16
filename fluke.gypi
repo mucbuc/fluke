@@ -5,9 +5,7 @@
             'src/lexer.h',
             'src/lexer.hxx',
             'src/parser.h',
-            'src/parser.hxx',
-            'src/token.h',
-            'src/token.hxx'
+            'src/parser.hxx'
         ]
     }
 }

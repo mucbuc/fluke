@@ -33,7 +33,7 @@ namespace om636
 			typedef U analyzer_type; 
 
 			virtual ~lexer() = default;
-			virtual void split( stream_type &, analyzer_type & ) const = 0;
+			virtual void split( stream_type &, analyzer_type ) const = 0;
 		};
 
 		template<class T, class U, class V>
@@ -53,7 +53,7 @@ namespace om636
 			brute_lexer(const set_type &);
 			virtual ~brute_lexer() = default;
 
-			void split( stream_type &, analyzer_type & ) const;
+			void split( stream_type &, analyzer_type ) const;
 
 			set_type & delimiters();
 			const set_type & delimiters() const;

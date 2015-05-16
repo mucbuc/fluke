@@ -20,11 +20,10 @@ namespace om636
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////
 	    template<class T, class U, class V>
-		void brute_lexer<T, U, V>::split( stream_type & stream, analyzer_type & analyzer ) const
+		void brute_lexer<T, U, V>::split( stream_type & stream, analyzer_type analyzer ) const
 		{
-	    	typedef string_type::value_type value_type;
-	    	string_type result;
-	    	value_type front;
+	    	string_type buffer;
+	    	string_type::value_type front;
 
 	    	while (stream.get(front))
 	    	{
@@ -32,11 +31,11 @@ namespace om636
                 if (	m_delimiters.find(delimiter) 
 					!= 	m_delimiters.end())
 	    		{
-	    			analyzer.emit( delimiter, result );
-	    			result.clear();
+	    			analyzer( delimiter, buffer );
+	    			buffer.clear();
 	    		}
 	    		else 
-	    			result += front;
+	    			buffer += front;
 	    	}
 		}
 
