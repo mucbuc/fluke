@@ -5,52 +5,54 @@ namespace om636
         /////////////////////////////////////////////////////////////////////////////////////////////
 	    // brute_lexer<T, U, V>
 		/////////////////////////////////////////////////////////////////////////////////////////////
-		template<class T, class U, class V>
-		brute_lexer<T, U, V>::brute_lexer()
-		: base_type()
-		, m_delimiters()
-		{}
+//		template<class T, class U>
+//        std::vector<typename T::char_type> splitAll(T & input, U delimiters_begin, U delimiters_end, std::function<void(T::char_type, typename std::vector<typename T::char_type>::iterator, typename std::vector<typename T::char_type>::iterator)>)
+//                                                                                                                        
+//                                                                                                        //                std::vector<typename T::char_type>analyzer)
+//		{
         
-        /////////////////////////////////////////////////////////////////////////////////////////////
-		template<class T, class U, class V>
-		brute_lexer<T, U, V>::brute_lexer(const set_type & delimiters)
-		: base_type()
-		, m_delimiters( delimiters )
-		{}
-		
-		/////////////////////////////////////////////////////////////////////////////////////////////
-	    template<class T, class U, class V>
-		void brute_lexer<T, U, V>::split( stream_type & stream, analyzer_type analyzer ) const
-		{
-	    	string_type buffer;
-	    	string_type::value_type front;
-
-	    	while (stream.get(front))
+        // std::find(delimiters_begin, delimiters_end, front) != delimiters_end)
+        template<class T, class U, class V>
+        void
+        splitAll(
+                 T & input,
+                 U delimiter_predicate,
+                 std::function<void(typename T::char_type,
+                                    typename V::const_iterator,
+                                    typename V::const_iterator)> analyzer,
+                 V & buffer)
+        {
+			typedef typename T::char_type char_type;
+			
+            buffer.clear();
+			char_type front;
+	    	while (input.get(front))
 	    	{
-	    		string_type delimiter(1, front);
-                if (	m_delimiters.find(delimiter) 
-					!= 	m_delimiters.end())
-	    		{
-	    			analyzer( delimiter, buffer );
-	    			buffer.clear();
-	    		}
-	    		else 
-	    			buffer += front;
+	    		if (delimiter_predicate(front))
+	   			{
+	   				analyzer( front, buffer.begin(), buffer.end() );
+	   				buffer.clear();
+	   			}
+	   			else 
+	    			buffer.push_back( front );
 	    	}
-		}
 
-		/////////////////////////////////////////////////////////////////////////////////////////////
-	    template<class T, class U, class V>
-		auto brute_lexer<T, U, V>::delimiters() -> set_type & 
-		{
-			return m_delimiters;
-		}
-		
-		/////////////////////////////////////////////////////////////////////////////////////////////
-	    template<class T, class U, class V>
-		auto brute_lexer<T, U, V>::delimiters() const -> const set_type & 
-		{
-			return m_delimiters;
-		}
+	    }
+        
+        
+        
+        template<class T, class U>
+        void
+        splitAll(
+                 T & input,
+                 U delimiter_predicate,
+                 std::function<void(typename T::char_type,
+                                    typename std::vector<typename T::char_type>::const_iterator,
+                                    typename std::vector<typename T::char_type>::const_iterator)> analyzer)
+        {
+            std::vector< typename T::char_type > buffer;
+            splitAll(input, delimiter_predicate, analyzer, buffer);
+        }
+
 	}	// fluke
 }	// om636 

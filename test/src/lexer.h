@@ -6,13 +6,16 @@
 
 #include <lib/fluke/src/lexer.h>
 
+void tester()
+{}
+
 void check_lexer()
 {
     using namespace std;
     using namespace om636;
     using namespace fluke;
     
-    typedef brute_lexer< istream, function<void( string, string ) > > lexer_type;
+    typedef std::vector<char> buffer_type;
     
     unsigned counter(0);
     
@@ -20,22 +23,31 @@ void check_lexer()
     s << "5;";
     s << "3\n";
     
-    lexer_type lexer( { " ", "\n", "\t", ";" } );
-    lexer.split( s, [&](string c, string s) 
-        {
-            switch(counter++) 
-            {
-                case 0:
-                    ASSERT( c == ";" );
-                    ASSERT( s == "5" );
-                break;
-                case 1:
-                    ASSERT( c == "\n" );
-                    ASSERT( s == "3" );
-                break;
-            } 
-        } );
+    buffer_type delimiters( { ' ', '\n', '\t', ';' } );
+    
+    typedef typename buffer_type::const_iterator const_iterator;
 
+    auto is_delimiter( [& delimiters](char w) -> bool {
+        return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
+    } );
+    
+    auto handle_delimiter( [& counter](char c, const_iterator b, const_iterator e) {
+        std::string s(b, e);
+        switch(counter++)
+        {
+          case 0:
+              ASSERT( c == ';' );
+              ASSERT( s == "5" );
+              break;
+          case 1:
+              ASSERT( c == '\n' );
+              ASSERT( s == "3" );
+              break;
+        } 
+    } );
+    
+    splitAll( s, is_delimiter, handle_delimiter );
+            
     ASSERT( counter == 2 );
     FOOTER;
 }
