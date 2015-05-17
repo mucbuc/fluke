@@ -2,17 +2,7 @@
 	'targets': [
 		{
 			'conditions': [
-				[ 
-					'OS=="mac"', {
-						'xcode_settings': {
-							'OTHER_CFLAGS': [
-								#'-std=c++11', '-stdlib=libc++'
-							],
-						}#xcode-settings
-					} #mac
-				],
-				[
-					'OS=="ios"', {
+				[	'OS=="ios"', {
 						'mac_bundle': 1,
 						'xcode_settings': {
 							'SDKROOT': 'iphoneos',
