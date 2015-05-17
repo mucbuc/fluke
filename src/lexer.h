@@ -6,8 +6,8 @@
 
 namespace om636
 {
-	namespace fluke
-	{
+    namespace fluke
+    {
         template<class T, class U>
         void
         split(
@@ -44,7 +44,7 @@ namespace om636
 
         
     } // fluke
-}	// om636
+}   // om636
 
 #include "lexer.hxx"
 
