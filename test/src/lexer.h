@@ -23,14 +23,12 @@ void check_lexer()
     s << "5;";
     s << "3\n";
     
-    buffer_type delimiters( { ' ', '\n', '\t', ';' } );
-    
-    typedef typename buffer_type::const_iterator const_iterator;
-
-    auto is_delimiter( [& delimiters](char w) -> bool {
+    auto is_delimiter( [](char w) -> bool {
+        static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
         return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
     } );
-    
+
+    typedef typename buffer_type::const_iterator const_iterator;
     auto handle_delimiter( [& counter](char c, const_iterator b, const_iterator e) {
         std::string s(b, e);
         switch(counter++)
@@ -46,7 +44,7 @@ void check_lexer()
         } 
     } );
     
-    splitAll( s, is_delimiter, handle_delimiter );
+    split( s, is_delimiter, handle_delimiter );
             
     ASSERT( counter == 2 );
     FOOTER;

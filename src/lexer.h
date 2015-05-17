@@ -1,25 +1,8 @@
-/* 
-	type: ??? should i block copy ???
-
-	objective:
-		- lexical analysis
-
-	blocked:
-		- assignment: lazyness
-		- i cant think of a good reason to block, but cant think of a good reason to allow
-
-	todo: 	
-		- specialize for c style strings 
-
-	design change:
-
-*/
-
 #ifndef LEXER_H_8900700
 #define LEXER_H_8900700
 
-#include <utility>
 #include <vector>
+#include <functional>
 
 namespace om636
 {
@@ -27,19 +10,19 @@ namespace om636
 	{
         template<class T, class U, class V>
         void
-        splitAll(
-                 T & input,
-                 U delimiter_predicate,
+        split(
+                 T &,
+                 std::function<bool(typename T::char_type)>,
                  std::function<void(typename T::char_type,
                                     typename V::const_iterator,
                                     typename V::const_iterator)>,
-                 V & buffer);
+                 V &);
         
         template<class T, class U>
         void
-        splitAll(
-                 T & input,
-                 U delimiter_predicate,
+        split(
+                 T &,
+                 U,
                  std::function<void(typename T::char_type,
                                     typename std::vector<typename T::char_type>::const_iterator,
                                     typename std::vector<typename T::char_type>::const_iterator)>);
