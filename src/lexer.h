@@ -8,25 +8,40 @@ namespace om636
 {
 	namespace fluke
 	{
-        template<class T, class U, class V>
+        template<class T, class U>
         void
-        split(
+        split_raw(
                  T &,
                  std::function<bool(typename T::char_type)>,
                  std::function<void(typename T::char_type,
-                                    typename V::const_iterator,
-                                    typename V::const_iterator)>,
+                                    typename U::const_iterator,
+                                    typename U::const_iterator)>,
+                 U &);
+        
+        template<class T>
+        void
+        split_raw(
+                 T &,
+                 std::function<bool(typename T::char_type)>,
+                 std::function<void(typename T::char_type,
+                                    typename std::vector<typename T::char_type>::const_iterator,
+                                    typename std::vector<typename T::char_type>::const_iterator)>);
+
+        template<class T, class U, class V>
+        void
+        split_token(
+                 T &,
+                 std::function<bool(typename T::char_type)>,
+                 U,
                  V &);
         
         template<class T, class U>
         void
-        split(
+        split_token(
                  T &,
-                 U,
-                 std::function<void(typename T::char_type,
-                                    typename std::vector<typename T::char_type>::const_iterator,
-                                    typename std::vector<typename T::char_type>::const_iterator)>);
-        
+                 std::function<bool(typename T::char_type)>,
+                 U);
+
         
     } // fluke
 }	// om636

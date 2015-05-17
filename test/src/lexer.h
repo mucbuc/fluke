@@ -5,9 +5,35 @@
 #include <functional>
 
 #include <lib/fluke/src/lexer.h>
+#include <lib/fluke/src/token.h>
 
-void tester()
-{}
+void check_split_tokens()
+{
+    using namespace std;
+    using namespace om636;
+    using namespace fluke;
+    
+    typedef std::vector<char> buffer_type;
+    typedef token<std::string> token_type;
+    
+    stringstream s;
+    s << "5;";
+    s << "3\n";
+    
+    auto is_delimiter( [](char w) -> bool {
+        static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
+        return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
+    } );
+
+    typedef typename buffer_type::const_iterator const_iterator;
+    std::function<void(token_type)> handle_delimiter( [](token_type t) {
+      std::cout << "token: " << t.name() << std::endl;
+    } );
+    
+    split_token( s, is_delimiter, handle_delimiter );
+    
+    FOOTER;
+}
 
 void check_lexer()
 {
@@ -44,7 +70,7 @@ void check_lexer()
         } 
     } );
     
-    split( s, is_delimiter, handle_delimiter );
+    split_raw( s, is_delimiter, handle_delimiter );
             
     ASSERT( counter == 2 );
     FOOTER;

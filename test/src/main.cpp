@@ -11,6 +11,7 @@
 int main(int argc, const char * argv[])
 {
     check_lexer();
+    check_split_tokens();
 //    check_parser();
 
   //  om636::token<std::string> t;
