@@ -10,7 +10,7 @@ namespace om636
 	{
         template<class T, class U>
         void
-        split_raw(
+        split(
                  T &,
                  std::function<bool(typename T::char_type)>,
                  std::function<void(typename T::char_type,
@@ -20,7 +20,7 @@ namespace om636
         
         template<class T>
         void
-        split_raw(
+        split(
                  T &,
                  std::function<bool(typename T::char_type)>,
                  std::function<void(typename T::char_type,
@@ -29,18 +29,18 @@ namespace om636
 
         template<class T, class U, class V>
         void
-        split_token(
+        split(
                  T &,
                  std::function<bool(typename T::char_type)>,
-                 U,
+                 std::function<void(U)>,
                  V &);
         
         template<class T, class U>
         void
-        split_token(
+        split(
                  T &,
                  std::function<bool(typename T::char_type)>,
-                 U);
+                 std::function<void(U)>);
 
         
     } // fluke

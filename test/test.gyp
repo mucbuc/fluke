@@ -9,7 +9,6 @@
 		'type': 'executable',
 		'sources': [
 			'src/main.cpp',
-			#'../test/src/test.h',
 			'src/lexer.h'
 		], #sources
 		'include_dirs': [

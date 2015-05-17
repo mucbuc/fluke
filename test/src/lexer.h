@@ -7,54 +7,52 @@
 #include <lib/fluke/src/lexer.h>
 #include <lib/fluke/src/token.h>
 
-void check_split_tokens()
+using namespace std;
+using namespace om636;
+using namespace fluke;
+
+typedef vector<char> buffer_type;
+typedef typename buffer_type::const_iterator const_iterator;
+
+static auto is_delimiter( [](char w) -> bool {
+    static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
+    return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
+} );
+    
+void split_tokens()
 {
-    using namespace std;
-    using namespace om636;
-    using namespace fluke;
-    
-    typedef std::vector<char> buffer_type;
-    typedef token<std::string> token_type;
-    
     stringstream s;
     s << "5;";
     s << "3\n";
-    
-    auto is_delimiter( [](char w) -> bool {
-        static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
-        return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
-    } );
 
-    typedef typename buffer_type::const_iterator const_iterator;
-    std::function<void(token_type)> handle_delimiter( [](token_type t) {
-      std::cout << "token: " << t.name() << std::endl;
+    typedef token<std::string> token_type;
+    vector<token_type> tokens;
+    
+    std::function<void(token_type)> handle_delimiter( [& tokens](token_type t) {
+        tokens.push_back(t);
     } );
     
-    split_token( s, is_delimiter, handle_delimiter );
+    split( s, is_delimiter, handle_delimiter );
+    
+    ASSERT(tokens.size() == 2);
+    ASSERT(tokens[0].type() == token_type::number);
+    ASSERT(tokens[0].name() == "5");
+    ASSERT(tokens[0].to_value<int>() == 5);
+    ASSERT(tokens[1].type() == token_type::number);
+    ASSERT(tokens[1].name() == "3");
+    ASSERT(tokens[1].to_value<int>() == 3);
     
     FOOTER;
 }
 
-void check_lexer()
+void split_raw()
 {
-    using namespace std;
-    using namespace om636;
-    using namespace fluke;
-    
-    typedef std::vector<char> buffer_type;
-    
-    unsigned counter(0);
-    
     stringstream s;
     s << "5;";
     s << "3\n";
     
-    auto is_delimiter( [](char w) -> bool {
-        static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
-        return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
-    } );
+    unsigned counter(0);
 
-    typedef typename buffer_type::const_iterator const_iterator;
     auto handle_delimiter( [& counter](char c, const_iterator b, const_iterator e) {
         std::string s(b, e);
         switch(counter++)
@@ -70,7 +68,7 @@ void check_lexer()
         } 
     } );
     
-    split_raw( s, is_delimiter, handle_delimiter );
+    split( s, is_delimiter, handle_delimiter );
             
     ASSERT( counter == 2 );
     FOOTER;
