@@ -14,7 +14,7 @@ using namespace fluke;
 typedef vector<char> buffer_type;
 typedef typename buffer_type::const_iterator const_iterator;
 
-static auto is_delimiter( [](char w) -> bool {
+static auto is_delimiter( [](const char w) -> bool {
     static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
     return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
 } );
