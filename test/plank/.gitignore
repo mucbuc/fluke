@@ -1,4 +1,4 @@
-build/
-*.xcodeproj/
-node_modules/
 .DS_Store
+build/
+node_modules/
+lib/
