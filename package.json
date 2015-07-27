@@ -20,6 +20,7 @@
     "fs-extra": "*",
     "ansi": "*",
     "commander": "*",
-    "promise": "*"
+    "promise": "*",
+    "expector": "*"
   }
 }

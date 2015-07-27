@@ -1,7 +1,8 @@
 {
 	'includes':[
 		'plank/def/mac-targets.gypi',
-		'plank/def/cpp11.gypi'
+		'plank/def/cpp11.gypi',
+		'plank/def/plank.gypi',
 	], #inclues
 	'target_defaults': {
 		'target_name': 'test',
@@ -13,5 +14,5 @@
 			'plank/src/', 
 			'.' 
 		] #include_dirs
-	} #target_defaults	
+	} #target_defaults
 }

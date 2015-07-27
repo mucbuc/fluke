@@ -1,6 +1,6 @@
 var assert = require( 'assert' )
   , path = require( 'path' )
-  , m_ = require( '../m_.json' );
+  , m_ = require( path.join( process.cwd(), 'm_.json' ) );
 
 assert( m_.hasOwnProperty( 'dependencies' ) );
 
@@ -13,7 +13,7 @@ function libName( dependency ) {
 }
 
 function readOutputDir() {
-	return m_.hasOwnProperty('outputDir') ? m_.outputDir : 'test';
+	return m_.hasOwnProperty('outputDir') ? m_.outputDir : '';
 }
 
 module.exports.readDependencies = readDependencies;
