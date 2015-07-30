@@ -21,6 +21,7 @@
     "ansi": "*",
     "commander": "*",
     "promise": "*",
-    "expector": "*"
+    "expector": "*", 
+    "date-time-string": "*"
   }
 }

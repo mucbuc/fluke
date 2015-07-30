@@ -6,7 +6,8 @@ var assert = require( 'assert' )
   , fs = require( 'graceful-fs' )
   , program = require( 'commander' )
   , Base = require( './base' )
-  , Logic = require( './logic' );
+  , Logic = require( './logic' )
+  , DateTime = require( 'date-time-string' ); 
 
 assert( typeof Logic !== 'undefined' );
 
@@ -26,21 +27,32 @@ program.output = path.join( process.cwd(), program.output ? program.output : 'bu
     , emitter = new events.EventEmitter;
   
   emitter.on( 'run', function( o ) {
-    logic.run( o ); 
+    logic.run( o )
+    .then( function() { 
+      log('passed');
+    })
+    .catch( function() {
+      log('failed (test)');
+    });
   }); 
 
   emitter.on( 'build', function( o ) {
-    logic.build( o ).then( function( o ) {
+    logic.build( o )
+    .then( function( o ) {
       emitter.emit( 'run', o );
     })
     .catch( function() {
-      console.log( 'build failed' );
+      log('failed (build)');
     });
   });
 
   emitter.on( 'generate', function( o ) {
-    logic.generate( o ).then( function( o ) {
+    logic.generate( o )
+    .then( function( o ) {
       emitter.emit( 'build', o );
+    })
+    .catch( function() {
+      log('failed (generate)');
     });
   });
 
@@ -54,4 +66,12 @@ program.output = path.join( process.cwd(), program.output ? program.output : 'bu
   });
 
   emitter.emit( 'traverse', { testDir: program.path } );
+
+  function log(msg) {
+    var tmp = DateTime.toDateTimeString() + ": " + msg + '\n';
+    fs.appendFile( 'build.log', tmp, function(err) {
+      if (err) throw err;
+    } ); 
+  }
+
 })();
