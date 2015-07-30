@@ -1,0 +1,12 @@
+{
+	"dependencies": [
+		{ 
+			"origin": "https://github.com/mucbuc/context.git",
+			"path": "test/lib"
+		},
+		{ 
+			"origin": "https://github.com/mucbuc/plank.git",
+			"path": "test/"
+		}
+	]
+}
