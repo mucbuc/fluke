@@ -1,0 +1,16 @@
+{
+	"dependencies": [ 
+		{
+			"origin": "https://github.com/mucbuc/drop.git",
+			"path": "test/lib"	
+		},
+		{
+			"origin": "https://github.com/mucbuc/traverse.git",
+			"path": "test/lib"	
+		},
+		{
+			"origin": "https://github.com/mucbuc/plank.git",
+			"path": "test"
+		}
+	]
+}
