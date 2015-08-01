@@ -1,7 +1,4 @@
 {
-	'includes':[
-		'../traverse/traverse.gypi'
-	],
 	'target_defaults': {
 		'sources': [
 			'src/interface.h',

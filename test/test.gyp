@@ -1,6 +1,7 @@
 {
 	'includes':[
 		'lib/context/def.gypi',
+		'lib/traverse/traverse.gypi',
 		'plank/def/mac-targets.gypi',
 		'plank/def/plank.gypi',
 	],#inclues
