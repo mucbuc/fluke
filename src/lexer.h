@@ -12,8 +12,8 @@ namespace om636
         void
         split(
                  T &,
-                 std::function<bool(typename T::char_type)>,
-                 std::function<void(typename T::char_type,
+                 std::function<bool(const typename T::char_type)>,
+                 std::function<void(const typename T::char_type,
                                     typename U::const_iterator,
                                     typename U::const_iterator)>,
                  U &);
@@ -22,8 +22,8 @@ namespace om636
         void
         split(
                  T &,
-                 std::function<bool(typename T::char_type)>,
-                 std::function<void(typename T::char_type,
+                 std::function<bool(const typename T::char_type)>,
+                 std::function<void(const typename T::char_type,
                                     typename std::vector<typename T::char_type>::const_iterator,
                                     typename std::vector<typename T::char_type>::const_iterator)>);
 
@@ -31,7 +31,7 @@ namespace om636
         void
         split(
                  T &,
-                 std::function<bool(typename T::char_type)>,
+                 std::function<bool(const typename T::char_type)>,
                  std::function<void(U)>,
                  V &);
         
@@ -39,7 +39,7 @@ namespace om636
         void
         split(
                  T &,
-                 std::function<bool(typename T::char_type)>,
+                 std::function<bool(const typename T::char_type)>,
                  std::function<void(U)>);
 
         
