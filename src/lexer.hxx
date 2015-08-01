@@ -9,8 +9,8 @@ namespace om636
         void
         split(
                  T & input,
-                 std::function<bool(const typename T::char_type)> delimiter_predicate,
-                 std::function<void(const typename T::char_type,
+                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
+                 std::function<void(typename std::add_const<typename T::char_type>::type,
                                     typename U::const_iterator,
                                     typename U::const_iterator)> analyzer,
                  U & buffer)
@@ -37,8 +37,8 @@ namespace om636
         void
         split(
                  T & input,
-                 std::function<bool(const typename T::char_type)> delimiter_predicate,
-                 std::function<void(const typename T::char_type,
+                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
+                 std::function<void(typename std::add_const<typename T::char_type>::type,
                                     typename std::vector<typename T::char_type>::const_iterator,
                                     typename std::vector<typename T::char_type>::const_iterator)> analyzer)
         {
@@ -53,7 +53,7 @@ namespace om636
         void
         split(
                  T & input,
-                 std::function<bool(const typename T::char_type)> delimiter_predicate,
+                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
                  std::function<void(U)> analyzer,
                  V & buffer)
         {
@@ -74,7 +74,7 @@ namespace om636
         void
         split(
                  T & input,
-                 std::function<bool(const typename T::char_type)> delimiter_predicate,
+                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
                  std::function<void(U)> analyzer)
         {
             typedef typename T::char_type char_type;
