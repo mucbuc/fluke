@@ -5,18 +5,17 @@ namespace om636
         /////////////////////////////////////////////////////////////////////////////////////////////
         // split
         /////////////////////////////////////////////////////////////////////////////////////////////
-        template<class T, class U>
+        template<class T>
+        template<class U, class V>
         void
-        split(
-                 T & input,
-                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
-                 std::function<void(typename std::add_const<typename T::char_type>::type,
-                                    typename U::const_iterator,
-                                    typename U::const_iterator)> analyzer,
-                 U & buffer)
+        splitter<T>::split(
+                 U & input,
+                 std::function<bool(char_type)> delimiter_predicate,
+                 std::function<void(char_type,
+                                    typename V::const_iterator,
+                                    typename V::const_iterator)> analyzer,
+                 V & buffer)
         {
-            typedef typename T::char_type char_type;
-            
             char_type front;
             while (input.get(front))
             {
@@ -34,54 +33,48 @@ namespace om636
         // split
         /////////////////////////////////////////////////////////////////////////////////////////////
         template<class T>
+        template<class U>
         void
-        split(
-                 T & input,
-                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
-                 std::function<void(typename std::add_const<typename T::char_type>::type,
-                                    typename std::vector<typename T::char_type>::const_iterator,
-                                    typename std::vector<typename T::char_type>::const_iterator)> analyzer)
+        splitter<T>::split(
+                 U & input,
+                 std::function<bool(char_type)> delimiter_predicate,
+                 std::function<void(char_type,
+                                    typename std::vector<char_type>::const_iterator,
+                                    typename std::vector<char_type>::const_iterator)> analyzer)
         {
-            std::vector< typename T::char_type > buffer;
+            std::vector< char_type > buffer;
             split(input, delimiter_predicate, analyzer, buffer);
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        // split
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        template<class T, class U, class V>
+        template<class T>
+        template<class U, class V>
         void
-        split(
-                 T & input,
-                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
-                 std::function<void(U)> analyzer,
+        splitter<T>::split(
+                 U & input,
+                 std::function<bool(char_type)> delimiter_predicate,
+                 std::function<void(token_type)> analyzer,
                  V & buffer)
         {
-            typedef typename T::char_type char_type;
-            typedef U token_type;
-
             split(input, delimiter_predicate, [& analyzer](char_type d, typename V::const_iterator begin, typename V::const_iterator end) {
                 while (begin != end) {
                     begin = token_type::make_token(begin, end, analyzer );
                 }
             });
         }
-        
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        // split
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        template<class T, class U>
+
+        template<class T>
+        template<class U>
         void
-        split(
-                 T & input,
-                 std::function<bool(typename std::add_const<typename T::char_type>::type)> delimiter_predicate,
-                 std::function<void(U)> analyzer)
+        splitter<T>::split(
+                 U & input,
+                 std::function<bool(char_type)> delimiter_predicate,
+                 std::function<void(token_type)> analyzer)
         {
-            typedef typename T::char_type char_type;
             std::vector< char_type > buffer;
 
             split( input, delimiter_predicate, analyzer, buffer );
         }
+
 
     }   // fluke
 }   // om636 

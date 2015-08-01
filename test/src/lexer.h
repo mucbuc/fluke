@@ -25,17 +25,15 @@ void split_tokens()
     s << "5;";
     s << "3\n";
 
+    typedef typename std::string::value_type char_type;
     typedef token<std::string> token_type;
     vector<token_type> tokens;
-    
-    std::function<void(const token_type)> handle_delimiter( [& tokens](const token_type t) {
-        tokens.push_back(t);
-    } );
-    
-    split( s, [](typename std::add_const<typename stringstream::char_type>::type w) -> bool {
-	static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
-    	return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
-    }, [& tokens](const token_type t) {
+  
+    splitter<token_type>::split( s, [](char_type w) -> bool {
+	   static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
+       return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
+    }, 
+    [& tokens](token_type t) {
        	tokens.push_back(t);
     });	
     ASSERT(tokens.size() == 2);
