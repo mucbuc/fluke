@@ -1,8 +1,8 @@
-
+#include <algorithm>
+#include <functional>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <functional>
 
 #include <lib/fluke/src/lexer.h>
 #include <lib/fluke/src/token.h>
@@ -53,7 +53,7 @@ void split_raw()
     
     unsigned counter(0);
 
-    auto handle_delimiter( [& counter](char c, const_iterator b, const_iterator e) {
+    auto handle_delimiter( [& counter](const char c, const_iterator b, const_iterator e) {
         std::string s(b, e);
         switch(counter++)
         {
