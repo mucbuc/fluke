@@ -13,6 +13,8 @@ using namespace fluke;
 
 typedef vector<char> buffer_type;
 typedef typename buffer_type::const_iterator const_iterator;
+typedef typename std::string::value_type char_type;
+typedef token<std::string> token_type;
 
 static auto is_delimiter( [](const char w) -> bool {
     static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
@@ -25,8 +27,7 @@ void split_tokens()
     s << "5;";
     s << "3\n";
 
-    typedef typename std::string::value_type char_type;
-    typedef token<std::string> token_type;
+
     vector<token_type> tokens;
   
     splitter<token_type>::split( s, [](char_type w) -> bool {
@@ -55,7 +56,7 @@ void split_raw()
     
     unsigned counter(0);
 
-    auto handle_delimiter( [& counter](const char c, const_iterator b, const_iterator e) {
+    auto handle_delimiter( [& counter](char_type c, const_iterator b, const_iterator e) {
         std::string s(b, e);
         switch(counter++)
         {
@@ -70,8 +71,8 @@ void split_raw()
         } 
     } );
     
-//    split( s, is_delimiter, handle_delimiter );
-            
+    splitter<token_type>::split( s, is_delimiter, handle_delimiter );
+           
     ASSERT( counter == 2 );
     FOOTER;
 }
