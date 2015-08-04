@@ -9,67 +9,50 @@ namespace om636
 {
     namespace fluke
     {
-        template<class T> 
+        template<class T, class U = typename T::value_type::value_type> 
         struct splitter
         {
             typedef T token_type; 
-            typedef typename token_type::value_type string_type;
-            typedef typename string_type::value_type char_type; 
+            typedef typename token_type::value_type::value_type char_type; 
 
-            template<class U, class V>
-            void
-            static split(
-                     U &,
-                     std::function<bool(char_type)>,
-                     std::function<void(char_type,
-                                        typename V::const_iterator,
-                                        typename V::const_iterator)>,
-                     V &);
-            
-            template<class U>
-            void
-            static split(
-                     U &,
-                     std::function<bool(char_type)>,
-                     std::function<void(char_type,
-                                        typename std::vector<char_type>::const_iterator,
-                                        typename std::vector<char_type>::const_iterator)>);
-
-
-            template<class U, class V>
-            void
-            static split(
+            template<class V>
+            static 
+            void split(
                      U &,
                      std::function<bool(char_type)>,
                      std::function<void(token_type)>,
                      V &);
 
-            template<class U>
-            void
-            static split(
+            static void split(
                      U &,
                      std::function<bool(char_type)>,
                      std::function<void(token_type)>);
-
         };
 
+        template<class T, class U = std::vector< typename T::value_type::value_type > >
+        struct buffered_splitter
+        : splitter<T, typename U::value_type>
+        {
+            typedef T token_type; 
+            typedef U buffer_type;
+            typedef typename buffer_type::value_type char_type; 
+            typedef typename buffer_type::const_iterator const_iterator;
 
-        // template<class T, class U, class V, class W>
-        // void
-        // split(
-        //          T &,
-        //          std::function<bool(W)>,
-        //          std::function<void(U)>,
-        //          V &);
-        
-        // template<class T, class U, class V>
-        // void
-        // split(
-        //          T &,
-        //          std::function<bool(V)>,
-        //          std::function<void(U)>);
-
-        
+            template<class V>
+            void
+            static split(
+                     V &,
+                     std::function<bool(char_type)>,
+                     std::function<void(char_type, const_iterator, const_iterator)>,
+                     U &);
+            
+            template<class V>
+            void
+            static split(
+                     V &,
+                     std::function<bool(char_type)>,
+                     std::function<void(char_type, const_iterator, const_iterator)>);
+        };
     } // fluke
 }   // om636
 

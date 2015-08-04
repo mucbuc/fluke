@@ -3,18 +3,55 @@ namespace om636
     namespace fluke
     {
         /////////////////////////////////////////////////////////////////////////////////////////////
-        // split
+        // splitter<T, U>::split
         /////////////////////////////////////////////////////////////////////////////////////////////
-        template<class T>
-        template<class U, class V>
+        template<class T, class U>
+        template<class V>
         void
-        splitter<T>::split(
+        splitter<T, U>::split(
                  U & input,
                  std::function<bool(char_type)> delimiter_predicate,
-                 std::function<void(char_type,
-                                    typename V::const_iterator,
-                                    typename V::const_iterator)> analyzer,
+                 std::function<void(token_type)> analyzer,
                  V & buffer)
+        {
+            typedef typename V::const_iterator const_iterator;
+            split(
+                input, 
+                delimiter_predicate, 
+                [& analyzer](char_type d, const_iterator begin, const_iterator end) {
+                    while (begin != end) {
+                        begin = token_type::make_token(begin, end, analyzer );
+                    }
+                }
+            );
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        // splitter<T, U>::split
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        template<class T, class U>
+        void
+        splitter<T, U>::split(
+                U & input,
+                std::function<bool(char_type)> delimiter_predicate,
+                std::function<void(token_type)> analyzer)
+        {
+            buffered_splitter<T>::split( input, delimiter_predicate, analyzer );
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        // buffered_splitter<T, U>::split
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        template<class T, class U>
+        template<class V>
+        void
+        buffered_splitter<T, U>::split(
+                 V & input,
+                 std::function<bool(char_type)> delimiter_predicate,
+                 std::function<void(char_type,
+                                    const_iterator,
+                                    const_iterator)> analyzer,
+                 U & buffer)
         {
             char_type front;
             while (input.get(front))
@@ -30,51 +67,20 @@ namespace om636
         }
         
         /////////////////////////////////////////////////////////////////////////////////////////////
-        // split
+        // buffered_splitter<T, U>::split
         /////////////////////////////////////////////////////////////////////////////////////////////
-        template<class T>
-        template<class U>
+        template<class T, class U>
+        template<class V>
         void
-        splitter<T>::split(
-                 U & input,
+        buffered_splitter<T, U>::split(
+                 V & input,
                  std::function<bool(char_type)> delimiter_predicate,
                  std::function<void(char_type,
-                                    typename std::vector<char_type>::const_iterator,
-                                    typename std::vector<char_type>::const_iterator)> analyzer)
+                                    const_iterator,
+                                    const_iterator)> analyzer)
         {
             std::vector< char_type > buffer;
             split(input, delimiter_predicate, analyzer, buffer);
         }
-
-        template<class T>
-        template<class U, class V>
-        void
-        splitter<T>::split(
-                 U & input,
-                 std::function<bool(char_type)> delimiter_predicate,
-                 std::function<void(token_type)> analyzer,
-                 V & buffer)
-        {
-            split(input, delimiter_predicate, [& analyzer](char_type d, typename V::const_iterator begin, typename V::const_iterator end) {
-                while (begin != end) {
-                    begin = token_type::make_token(begin, end, analyzer );
-                }
-            });
-        }
-
-        template<class T>
-        template<class U>
-        void
-        splitter<T>::split(
-                 U & input,
-                 std::function<bool(char_type)> delimiter_predicate,
-                 std::function<void(token_type)> analyzer)
-        {
-            std::vector< char_type > buffer;
-
-            split( input, delimiter_predicate, analyzer, buffer );
-        }
-
-
     }   // fluke
 }   // om636 
