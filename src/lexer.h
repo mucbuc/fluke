@@ -15,16 +15,17 @@ namespace om636
             typedef T token_type; 
             typedef typename token_type::value_type::value_type char_type; 
 
-            template<class V>
+            template<class V, class W>
             static 
             void split(
-                     U &,
+                     V &,
                      std::function<bool(char_type)>,
                      std::function<void(token_type)>,
-                     V &);
-
+                     W &);
+            
+            template<class V>
             static void split(
-                     U &,
+                     V &,
                      std::function<bool(char_type)>,
                      std::function<void(token_type)>);
         };

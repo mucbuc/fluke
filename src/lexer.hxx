@@ -6,16 +6,16 @@ namespace om636
         // splitter<T, U>::split
         /////////////////////////////////////////////////////////////////////////////////////////////
         template<class T, class U>
-        template<class V>
+        template<class V, class W>
         void
         splitter<T, U>::split(
-                 U & input,
+                 V & input,
                  std::function<bool(char_type)> delimiter_predicate,
                  std::function<void(token_type)> analyzer,
-                 V & buffer)
+                 W & buffer)
         {
-            typedef typename V::const_iterator const_iterator;
-            split(
+            typedef typename W::const_iterator const_iterator;
+            buffered_splitter<T>::split(
                 input, 
                 delimiter_predicate, 
                 [& analyzer](char_type d, const_iterator begin, const_iterator end) {
@@ -30,13 +30,15 @@ namespace om636
         // splitter<T, U>::split
         /////////////////////////////////////////////////////////////////////////////////////////////
         template<class T, class U>
+        template<class V>
         void
         splitter<T, U>::split(
-                U & input,
+                V & input,
                 std::function<bool(char_type)> delimiter_predicate,
                 std::function<void(token_type)> analyzer)
         {
-            buffered_splitter<T>::split( input, delimiter_predicate, analyzer );
+            std::vector<char_type> buffer;
+            split( input, delimiter_predicate, analyzer, buffer );
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

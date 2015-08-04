@@ -33,7 +33,7 @@ void split_tokens()
     splitter<token_type>::split( s, [](char_type w) -> bool {
 	   static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
        return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
-    }, 
+    },
     [& tokens](token_type t) {
        	tokens.push_back(t);
     });	
@@ -71,7 +71,7 @@ void split_raw()
         } 
     } );
     
-    splitter<token_type>::split( s, is_delimiter, handle_delimiter );
+    buffered_splitter<token_type>::split( s, is_delimiter, handle_delimiter );
            
     ASSERT( counter == 2 );
     FOOTER;
