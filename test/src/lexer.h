@@ -20,7 +20,7 @@ static auto is_delimiter( [](const char w) -> bool {
     static buffer_type delimiters( { ' ', '\n', '\t', ';' } );
     return std::find(delimiters.begin(), delimiters.end(), w) != delimiters.end();
 } );
-    
+
 void split_tokens()
 {
     stringstream s;
