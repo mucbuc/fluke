@@ -1,0 +1,10 @@
+{
+	"includes":[
+		"lib/fluke/fluke.json"
+	],
+	"sources": [
+		"src/json_parser.h",
+		"src/lexer.h",
+		"src/main.cpp"
+	]
+}
