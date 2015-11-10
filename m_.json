@@ -1,8 +1,5 @@
 {
-	"dependencies": [
-		{ 
-			"origin": "https://github.com/mucbuc/context.git",
-			"path": "test/lib"
-		}
+	"test/lib": [
+		"https://github.com/mucbuc/context.git"
 	]
 }
