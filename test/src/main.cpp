@@ -1,4 +1,4 @@
-#include "test.h"
+#include <tmp/src/test.h>
 #include "lexer.h"
 
 #include "json_parser.h"
