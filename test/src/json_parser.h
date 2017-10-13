@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string> 
 #include <sstream>
+#include <string>
 
 #include <lib/fluke/src/lexer.h>
 
@@ -17,10 +17,9 @@ void parse_json()
 {
     stringstream json;
     json << R"({ "hello": "joe" })";
-    
-    buffered_splitter<token_type>::split( json, [](const char w) -> bool {
-         return w == '{' || w == '}' || w == '"' || w == ':';// || w == '[' || w == ']';
-    }, [](char_type c, const_iterator b, const_iterator e) {
+
+    buffered_splitter<token_type>::split(json, [](const char w) -> bool {
+         return w == '{' || w == '}' || w == '"' || w == ':';// || w == '[' || w == ']'; }, [](char_type c, const_iterator b, const_iterator e) {
         switch (c) {
         	case '{': 
         		cout << "object open";
@@ -42,7 +41,5 @@ void parse_json()
     			// break;
     	}; 
 
-    	cout << endl;
-    });
-
+    	cout << endl; });
 }
