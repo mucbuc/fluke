@@ -3,6 +3,10 @@
 ### namespace fluke
     
 #### struct splitter
+_type signature_
+```C++
+template<class T, class U = typename T::value_type::value_type>
+``` 
 
 ```C++
 template<class V, class W>
