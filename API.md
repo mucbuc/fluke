@@ -4,15 +4,17 @@
     
 #### struct splitter
 
-  ```C++
-  template<class V, class W>
-  static void split(
+```C++
+template<class V, class W>
+static void split(
                        V &,
                        std::function<bool(char_type)>,
                        std::function<void(token_type)>,
                        W &);
-  template<class V>
-  static void split(
+```
+```C++
+template<class V>
+static void split(
                      V &,
                      std::function<bool(char_type)>,
                      std::function<void(token_type)>);
@@ -26,7 +28,8 @@ static void split(
                      std::function<bool(char_type)>,
                      std::function<void(char_type, const_iterator, const_iterator)>,
                      U &);
-            
+```
+```C++            
 template<class V>
 static void split(
                      V &,
